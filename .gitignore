@@ -1,0 +1,56 @@
+# Gradle files
+.gradle/
+build/
+*.apk
+*.aar
+*.aab
+
+# Local configuration
+local.properties
+
+# Logs
+*.log
+.DS_Store
+
+# Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Kotlin
+*.class
+*.jar
+
+# Realm
+*.realm
+*.realm.lock
+
+# Keystore
+*.jks
+*.keystore
+keystore.properties
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.classpath
+.c9/
+
+# OS
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Node
+node_modules/
+npm-debug.log
+
+# Secrets
+secrets/
+.secrets/
