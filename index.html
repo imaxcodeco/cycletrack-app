@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CycleTrack — Política de Privacidade</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.6; color: #1a1a1a; background: #fff; }
+  @media (prefers-color-scheme: dark) { body { color: #e8e8e8; background: #111; } a { color: #7fb0ff; } }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; border-top: 1px solid rgba(128,128,128,.3); padding-top: 1.25rem; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .92rem; }
+  th, td { border: 1px solid rgba(128,128,128,.35); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background: rgba(128,128,128,.12); }
+  .nav { margin-bottom: 1.5rem; font-size: .9rem; }
+  .updated { color: #777; font-size: .9rem; }
+</style>
+</head>
+<body>
+<p class="nav"><a href="./terms.html">Ver Termos de Serviço →</a></p>
+
+<h1>Política de Privacidade - CycleTrack</h1>
+<p class="updated">Última atualização: 23 de novembro de 2026 · Versão 2.0</p>
+
+<h2>1. Introdução</h2>
+<p>Esta Política de Privacidade explica como o CycleTrack ("o app", "nós") coleta, usa e protege suas informações quando você usa o aplicativo de rastreamento de ciclo menstrual e saúde reprodutiva.</p>
+<p>Estamos comprometidos com a conformidade com a <strong>LGPD</strong> (Lei nº 13.709/2018) e, na medida aplicável, com o <strong>GDPR</strong> (UE 2016/679).</p>
+
+<h2>2. Princípio central: seus dados ficam no seu aparelho</h2>
+<p>O CycleTrack foi desenhado para ser <strong>local-first</strong>: todos os dados de ciclo, sintomas, peso, temperatura, humor e conteúdo que você registra no app são armazenados <strong>apenas no armazenamento interno do seu aparelho</strong> (banco de dados local Realm). Esses dados <strong>não são enviados, sincronizados ou copiados para nenhum servidor nosso ou de terceiros</strong>.</p>
+<p>Isso significa que:</p>
+<ul>
+  <li>Não temos acesso aos seus registros de ciclo, sintomas ou saúde.</li>
+  <li>Não compartilhamos esses dados com anunciantes, parceiros comerciais ou qualquer terceiro.</li>
+  <li>Se você desinstalar o app ou apagar os dados do aplicativo, essas informações são perdidas permanentemente (não há backup em nuvem).</li>
+</ul>
+
+<h2>3. Dados que coletamos</h2>
+<h3>3.1 Dados de conta (Firebase Authentication)</h3>
+<p>Para usar o app, você cria uma conta com <strong>nome, e-mail e senha</strong>. Esses dados são processados pelo <strong>Firebase Authentication</strong> (serviço do Google) exclusivamente para permitir seu login e identificar sua sessão no aparelho. O Firebase Authentication não tem acesso aos seus dados de ciclo ou saúde — esses permanecem apenas no seu aparelho, conforme a Seção 2.</p>
+<p>A senha é gerenciada diretamente pelo Firebase de forma criptografada; nós (desenvolvedores do app) nunca temos acesso a ela em texto puro.</p>
+
+<h3>3.2 Dados inseridos por você, armazenados localmente</h3>
+<p>Comprimento de ciclo, datas de menstruação, sintomas, peso, temperatura, humor, objetivo de uso, e dados de conteúdo salvo. Todos armazenados localmente, conforme a Seção 2.</p>
+
+<h3>3.3 O que o app NÃO coleta</h3>
+<ul>
+  <li>Não usamos Google Analytics, Firebase Analytics ou qualquer SDK de analytics/telemetria de uso.</li>
+  <li>Não usamos SDKs de publicidade nem coletamos ID de publicidade.</li>
+  <li>Não acessamos localização, contatos, câmera, microfone ou fotos.</li>
+  <li>Não integramos com Health Connect, Google Fit ou Apple Health nesta versão.</li>
+  <li>Não processamos pagamentos nem temos recursos pagos nesta versão.</li>
+</ul>
+
+<h2>4. Compartilhamento de dados</h2>
+<p>Não vendemos nem compartilhamos seus dados pessoais com terceiros para fins de marketing ou publicidade. A única parte que processa dados (de conta, não de saúde) em nosso nome é:</p>
+<table>
+  <tr><th>Serviço</th><th>Finalidade</th><th>Dados envolvidos</th></tr>
+  <tr><td>Firebase Authentication (Google)</td><td>Login e gestão de sessão</td><td>Nome, e-mail, senha (criptografada)</td></tr>
+</table>
+<p>O recurso de "Modo Parceiro" do app simula localmente o compartilhamento com um parceiro, sem enviar dados para nenhum servidor — é uma funcionalidade apenas de demonstração nesta versão.</p>
+
+<h2>5. Retenção e exclusão de dados</h2>
+<ul>
+  <li>Dados de ciclo e saúde: ficam no seu aparelho enquanto você usar o app; são apagados ao desinstalar o app ou limpar os dados do aplicativo nas configurações do Android.</li>
+  <li>Dados de conta (Firebase): mantidos enquanto sua conta existir.</li>
+  <li>Para solicitar a exclusão da sua conta e dos dados associados a ela no Firebase, envie um e-mail para o contato abaixo.</li>
+</ul>
+
+<h2>6. Seus direitos (LGPD)</h2>
+<p>Você pode solicitar, a qualquer momento, por e-mail:</p>
+<ul>
+  <li>Confirmação sobre quais dados de conta temos sobre você;</li>
+  <li>Exclusão da sua conta;</li>
+  <li>Esclarecimentos sobre esta política.</li>
+</ul>
+<p>Como os dados de saúde ficam exclusivamente no seu aparelho, o acesso, a correção e a exclusão desses dados específicos são feitos diretamente por você, dentro do próprio app ou desinstalando-o.</p>
+
+<h2>7. Segurança</h2>
+<ul>
+  <li>Comunicação com o Firebase Authentication usa conexão criptografada (HTTPS/TLS).</li>
+  <li>Dados locais ficam na área privada do aplicativo no Android, protegida pelo sistema operacional.</li>
+</ul>
+
+<h2>8. Crianças</h2>
+<p>O app não é direcionado a menores de 13 anos.</p>
+
+<h2>9. Alterações nesta política</h2>
+<p>Caso façamos mudanças materiais nesta política, atualizaremos a data no topo deste documento.</p>
+
+<h2>10. Contato</h2>
+<p>Dúvidas sobre privacidade ou solicitações relacionadas aos seus dados: <strong>ianmaxcodeco@gmail.com</strong></p>
+
+</body>
+</html>
