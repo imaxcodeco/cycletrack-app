@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Application Theme (Material3) -->
+    <style name="Theme.CycleTrack" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary Brand Colors -->
+        <item name="colorPrimary">@color/primary_500</item>
+        <item name="colorPrimaryVariant">@color/primary_700</item>
+        <item name="colorPrimaryContainer">@color/primary_100</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorOnPrimaryContainer">@color/primary_900</item>
+
+        <!-- Secondary Brand Colors -->
+        <item name="colorSecondary">@color/secondary_500</item>
+        <item name="colorSecondaryVariant">@color/secondary_700</item>
+        <item name="colorSecondaryContainer">@color/secondary_100</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorOnSecondaryContainer">@color/secondary_900</item>
+
+        <!-- Tertiary Brand Colors -->
+        <item name="colorTertiary">@color/tertiary_500</item>
+        <item name="colorTertiaryFixedDim">@color/tertiary_700</item>
+        <item name="colorTertiaryContainer">@color/tertiary_100</item>
+        <item name="colorOnTertiary">@color/on_tertiary</item>
+        <item name="colorOnTertiaryContainer">@color/tertiary_900</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/error_500</item>
+        <item name="colorErrorContainer">@color/error_100</item>
+        <item name="colorOnError">@color/on_error</item>
+        <item name="colorOnErrorContainer">@color/error_900</item>
+
+        <!-- Surface / Background -->
+        <item name="colorSurface">@color/neutral_0</item>
+        <item name="colorSurfaceVariant">@color/neutral_100</item>
+        <item name="colorOnSurface">@color/on_surface_light</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant_light</item>
+        <item name="android:colorBackground">@color/neutral_50</item>
+        <item name="colorOnBackground">@color/on_background_light</item>
+
+        <!-- Outline -->
+        <item name="colorOutline">@color/outline_light</item>
+        <item name="colorOutlineVariant">@color/outline_variant_light</item>
+
+        <!-- Inverse (for dark content on light background) -->
+        <item name="colorSurfaceInverse">@color/neutral_900</item>
+        <item name="colorOnSurfaceInverse">@color/on_surface_dark</item>
+        <item name="colorPrimaryInverse">@color/primary_400</item>
+
+        <!-- Scrim -->
+
+        <!-- Status Bar & Navigation -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <!-- Typography - serÃƒÂ¡ sobrescrito no Compose Theme -->
+        <!-- Shape -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.CycleTrack.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.CycleTrack.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.CycleTrack.LargeComponent</item>
+    </style>
+
+    <!-- Light Theme (explicit) -->
+    <style name="Theme.CycleTrack.Light" parent="Theme.CycleTrack">
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+
+    <!-- Dark Theme -->
+    <style name="Theme.CycleTrack.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary -->
+        <item name="colorPrimary">@color/primary_400</item>
+        <item name="colorPrimaryVariant">@color/primary_300</item>
+        <item name="colorPrimaryContainer">@color/primary_800</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorOnPrimaryContainer">@color/primary_100</item>
+
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/secondary_400</item>
+        <item name="colorSecondaryVariant">@color/secondary_300</item>
+        <item name="colorSecondaryContainer">@color/secondary_800</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorOnSecondaryContainer">@color/secondary_100</item>
+
+        <!-- Tertiary -->
+        <item name="colorTertiary">@color/tertiary_400</item>
+        <item name="colorTertiaryFixedDim">@color/tertiary_300</item>
+        <item name="colorTertiaryContainer">@color/tertiary_800</item>
+        <item name="colorOnTertiary">@color/on_tertiary</item>
+        <item name="colorOnTertiaryContainer">@color/tertiary_100</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/error_400</item>
+        <item name="colorErrorContainer">@color/error_800</item>
+        <item name="colorOnError">@color/on_error</item>
+        <item name="colorOnErrorContainer">@color/error_100</item>
+
+        <!-- Surface / Background -->
+        <item name="colorSurface">@color/dark_surface_100</item>
+        <item name="colorSurfaceVariant">@color/dark_surface_200</item>
+        <item name="colorOnSurface">@color/on_surface_dark</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant_dark</item>
+        <item name="android:colorBackground">@color/dark_surface_0</item>
+        <item name="colorOnBackground">@color/on_background_dark</item>
+
+        <!-- Outline -->
+        <item name="colorOutline">@color/outline_dark</item>
+        <item name="colorOutlineVariant">@color/outline_variant_dark</item>
+
+        <!-- Inverse -->
+        <item name="colorSurfaceInverse">@color/neutral_100</item>
+        <item name="colorOnSurfaceInverse">@color/on_surface_light</item>
+        <item name="colorPrimaryInverse">@color/primary_600</item>
+
+        <!-- Status Bar & Navigation -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+
+    <!-- Splash Theme -->
+    <style name="Theme.CycleTrack.Splash" parent="Theme.CycleTrack">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Shape Appearances -->
+    <style name="ShapeAppearance.CycleTrack.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.CycleTrack.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.CycleTrack.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <!-- Bottom Sheet Shape -->
+    <style name="ShapeAppearance.CycleTrack.BottomSheet" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- Dialog Shape -->
+    <style name="ShapeAppearance.CycleTrack.Dialog" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <!-- Chip Shape -->
+    <style name="ShapeAppearance.CycleTrack.Chip" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">100dp</item> <!-- Fully rounded -->
+    </style>
+
+    <!-- Button Styles -->
+    <style name="Widget.CycleTrack.Button.Filled" parent="Widget.Material3.Button">
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="android:paddingVertical">14dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.CycleTrack.Button</item>
+    </style>
+
+    <style name="Widget.CycleTrack.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="android:paddingVertical">14dp</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.CycleTrack.Button</item>
+    </style>
+
+    <style name="Widget.CycleTrack.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.CycleTrack.Button</item>
+    </style>
+
+    <style name="Widget.CycleTrack.Button.Elevated" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="android:paddingVertical">14dp</item>
+        <item name="elevation">4dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.CycleTrack.Button</item>
+    </style>
+
+    <!-- FAB -->
+    <style name="Widget.CycleTrack.FAB" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="cornerRadius">16dp</item>
+        <item name="elevation">6dp</item>
+    </style>
+
+    <!-- Card -->
+    <style name="Widget.CycleTrack.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/neutral_0</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/outline_light</item>
+    </style>
+
+    <style name="Widget.CycleTrack.Card.Flat" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/neutral_50</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/outline_light</item>
+    </style>
+
+    <!-- Text Appearances -->
+    <style name="TextAppearance.CycleTrack.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">400</item>
+        <item name="android:lineHeight">24sp</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">400</item>
+        <item name="android:lineHeight">20sp</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">400</item>
+        <item name="android:lineHeight">16sp</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">500</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">500</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">500</item>
+    </style>
+
+    <style name="TextAppearance.CycleTrack.Button" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/inter_variable</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Input / TextField -->
+    <style name="Widget.CycleTrack.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintTextAppearance">@style/TextAppearance.CycleTrack.BodySmall</item>
+        <item name="placeholderTextAppearance">@style/TextAppearance.CycleTrack.BodyMedium</item>
+    </style>
+
+    <!-- Chip -->
+    <style name="Widget.CycleTrack.Chip.Filter" parent="Widget.Material3.Chip.Filter">
+        <item name="chipCornerRadius">100dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">8dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.CycleTrack.LabelMedium</item>
+    </style>
+
+    <style name="Widget.CycleTrack.Chip.Input" parent="Widget.Material3.Chip.Input">
+        <item name="chipCornerRadius">100dp</item>
+        <item name="android:paddingHorizontal">12dp</item>
+        <item name="android:paddingVertical">8dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.CycleTrack.LabelMedium</item>
+    </style>
+
+    <!-- Divider -->
+    <style name="Widget.CycleTrack.Divider" parent="Widget.Material3.MaterialDivider">
+        <item name="color">@color/outline_light</item>
+        <item name="thickness">1dp</item>
+    </style>
+
+    <!-- Progress Indicators -->
+    <style name="Widget.CycleTrack.CircularProgressIndicator" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="indicatorSize">48dp</item>
+        <item name="trackThickness">4dp</item>
+        <item name="indicatorColor">@color/primary_500</item>
+        <item name="trackColor">@color/primary_100</item>
+    </style>
+
+    <style name="Widget.CycleTrack.LinearProgressIndicator" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="trackThickness">4dp</item>
+        <item name="indicatorColor">@color/primary_500</item>
+        <item name="trackColor">@color/primary_100</item>
+        <item name="cornerRadius">2dp</item>
+    </style>
+
+    <!-- Slider -->
+    <style name="Widget.CycleTrack.Slider" parent="Widget.Material3.Slider">
+        <item name="trackHeight">4dp</item>
+        <item name="thumbRadius">12dp</item>
+        <item name="trackColorActive">@color/primary_500</item>
+        <item name="trackColorInactive">@color/primary_200</item>
+        <item name="thumbColor">@color/primary_500</item>
+    </style>
+
+    <!-- Switch -->
+    <style name="Widget.CycleTrack.Switch" parent="Widget.Material3.CompoundButton.Switch">
+        <item name="thumbRadius">12dp</item>
+        <item name="thumbTrackGapSize">40dp</item>
+        <item name="trackHeight">24dp</item>
+        <item name="trackColorActive">@color/primary_500</item>
+        <item name="trackColorActive">@color/primary_300</item>
+        <item name="trackColorInactive">@color/neutral_400</item>
+        <item name="trackColorInactive">@color/neutral_300</item>
+    </style>
+
+    <!-- Checkbox -->
+    <style name="Widget.CycleTrack.CheckBox" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/primary_500</item>
+    </style>
+
+    <!-- RadioButton -->
+    <style name="Widget.CycleTrack.RadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="buttonTint">@color/primary_500</item>
+    </style>
+</resources>

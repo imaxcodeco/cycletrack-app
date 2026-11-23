@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Regras de backup completo (Android 11 e anteriores).
+    Exclui dados sensíveis de saúde e credenciais.
+-->
+<full-backup-content>
+    <exclude domain="sharedpref" path="secure_prefs.xml" />
+    <exclude domain="database" path="cycletrack_analytics.db" />
+    <exclude domain="file" path="export/" />
+</full-backup-content>

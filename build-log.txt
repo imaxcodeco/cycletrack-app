@@ -1,0 +1,111 @@
+Starting a Gradle Daemon, 1 busy Daemon could not be reused, use --status for details
+Configuration on demand is an incubating feature.
+
+> Configure project :app
+WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 9.0 of the Android Gradle plugin.
+To keep using this feature, add the following to your module-level build.gradle files:
+    android.buildFeatures.buildConfig = true
+or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:dataBindingMergeDependencyArtifactsDebug
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:dataBindingTriggerDebug UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kaptGenerateStubsDebugKotlin
+> Task :app:kaptGenerateStubsDebugKotlin UP-TO-DATE
+> Task :app:kaptDebugKotlin UP-TO-DATE
+> Task :app:compileDebugKotlin
+w: Argument -Xopt-in is deprecated. Please use -opt-in instead
+w: Opt-in requirement marker androidx.lifecycle.ExperimentalLifecycleApi is unresolved. Please make sure it's present in the module dependencies
+w: Opt-in requirement marker androidx.health.connect.client.ExperimentalHealthConnectApi is unresolved. Please make sure it's present in the module dependencies
+w: file:///C:/Users/Ian%20Max/cycletrack-app/app/src/main/java/com/seuapp/cycletrack/presentation/ui/calendar/CalendarScreen.kt:268:5 Parameter 'today' is never used
+w: file:///C:/Users/Ian%20Max/cycletrack-app/app/src/main/java/com/seuapp/cycletrack/presentation/ui/theme/Theme.kt:229:16 'setter for statusBarColor: Int' is deprecated. Deprecated in Java
+w: file:///C:/Users/Ian%20Max/cycletrack-app/app/src/main/java/com/seuapp/cycletrack/presentation/ui/theme/Theme.kt:230:16 'setter for navigationBarColor: Int' is deprecated. Deprecated in Java
+
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:hiltAggregateDepsDebug
+> Task :app:hiltAggregateDepsDebug UP-TO-DATE
+> Task :app:hiltJavaCompileDebug NO-SOURCE
+> Task :app:debugRealmAccessorsTransformer
+> Task :app:transformDebugClassesWithAsm
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeExtDexDebug
+
+The message received from the daemon indicates that the daemon has disappeared.
+Build request sent: Build{id=ab7e82aa-1615-4411-882c-2b7d6bd1d65e, currentDir=C:\Users\Ian Max\cycletrack-app}
+Attempting to read last messages from the daemon log...
+Daemon pid: 24736
+  log file: C:\Users\Ian Max\.gradle\daemon\8.7\daemon-24736.out.log
+----- Last  20 lines from daemon log file - daemon-24736.out.log -----
+2026-11-19T10:32:58.808-0300 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 24: dispatching org.gradle.launcher.daemon.protocol.BuildStarted@3f3b27e4
+2026-11-19T10:32:58.830-0300 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: [USERDOMAIN_ROAMINGPROFILE, PROCESSOR_LEVEL, SESSIONNAME, ALLUSERSPROFILE, PROCESSOR_ARCHITECTURE, PSModulePath, SystemDrive, CLAUDE_CODE_SUBAGENT_MODEL, DIRNAME, USERNAME, ProgramFiles(x86), GOOSE_SERVER__SECRET_KEY, FPS_BROWSER_USER_PROFILE_STRING, APP_HOME, DEFAULT_JVM_OPTS, PATHEXT, DriverData, AGENT_SESSION_ID, EFC_8620_1592913036, ProgramData, ProgramW6432, HOMEPATH, CLAUDE_CODE_MAX_CONTEXT_TOKENS, PROCESSOR_IDENTIFIER, ProgramFiles, PUBLIC, windir, EFC_8620_2283032206, EFC_8620_1262719628, LOCALAPPDATA, USERDOMAIN, FPS_BROWSER_APP_PROFILE_STRING, LOGONSERVER, EFC_8620_2946480783, JAVA_HOME, PROMPT, AGENT, OneDrive, =C:, APPDATA, JAVA_EXE, GOOSE_TERMINAL, CommonProgramFiles, Path, CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY, EFC_8620_3789132940, OS, COMPUTERNAME, PROCESSOR_REVISION, CLASSPATH, CommonProgramW6432, ComSpec, APP_BASE_NAME, SystemRoot, TEMP, HOMEDRIVE, USERPROFILE, TMP, CommonProgramFiles(x86), NUMBER_OF_PROCESSORS, EFC_8620_4126798990, NVIDIA_API_KEY, HOME, LITELLM_MASTER_KEY]
+2026-11-19T10:32:58.957-0300 [DEBUG] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+2026-11-19T10:32:58.960-0300 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 24736). The daemon log file: C:\Users\Ian Max\.gradle\daemon\8.7\daemon-24736.out.log
+2026-11-19T10:32:58.992-0300 [INFO] [org.gradle.launcher.daemon.server.exec.LogAndCheckHealth] Starting build in new daemon [memory: 2 GiB]
+2026-11-19T10:32:59.034-0300 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+2026-11-19T10:32:59.037-0300 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=d386c2d6-c885-400c-b746-2b01ffffc4d8,javaHome=C:\Users\Ian Max\.jdk17\jdk-17.0.21+9,daemonRegistryDir=C:\Users\Ian Max\.gradle\daemon,pid=24736,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,daemonOpts=-XX:MaxMetaspaceSize=512m,--add-opens=java.base/java.util=ALL-UNNAMED,--add-opens=java.base/java.lang=ALL-UNNAMED,--add-opens=java.base/java.lang.invoke=ALL-UNNAMED,--add-opens=java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens=java.base/java.nio.charset=ALL-UNNAMED,--add-opens=java.base/java.net=ALL-UNNAMED,--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=BR,-Duser.language=pt,-Duser.variant]
+Configuration on demand is an incubating feature.
+WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 9.0 of the Android Gradle plugin.
+To keep using this feature, add the following to your module-level build.gradle files:
+    android.buildFeatures.buildConfig = true
+or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+w: Argument -Xopt-in is deprecated. Please use -opt-in instead
+w: Opt-in requirement marker androidx.lifecycle.ExperimentalLifecycleApi is unresolved. Please make sure it's present in the module dependencies
+w: Opt-in requirement marker androidx.health.connect.client.ExperimentalHealthConnectApi is unresolved. Please make sure it's present in the module dependencies
+w: file:///C:/Users/Ian%20Max/cycletrack-app/app/src/main/java/com/seuapp/cycletrack/presentation/ui/calendar/CalendarScreen.kt:268:5 Parameter 'today' is never used
+w: file:///C:/Users/Ian%20Max/cycletrack-app/app/src/main/java/com/seuapp/cycletrack/presentation/ui/theme/Theme.kt:229:16 'setter for statusBarColor: Int' is deprecated. Deprecated in Java
+w: file:///C:/Users/Ian%20Max/cycletrack-app/app/src/main/java/com/seuapp/cycletrack/presentation/ui/theme/Theme.kt:230:16 'setter for navigationBarColor: Int' is deprecated. Deprecated in Java
+----- End of the daemon log -----
+
+JVM crash log found: file:///C:/Users/Ian%20Max/cycletrack-app/hs_err_pid24736.log
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not dispatch a message to the daemon.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+EXIT_CODE=1
+EXIT_CODE=0 

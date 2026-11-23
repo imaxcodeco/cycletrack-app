@@ -1,0 +1,46 @@
+rules:
+  standard:
+    disabled:
+      - "final-newline"
+      - "no-wildcard-imports"
+    indentation:
+      indent-size: 4
+      continuation-indent-size: 8
+    max-line-length:
+      max-line-length: 120
+      exclude-package-statements: true
+      exclude-import-statements: true
+    naming:
+      class-pattern: "^[A-Z][A-Za-z0-9]*$"
+      function-pattern: "^[a-z][A-Za-z0-9]*$"
+      property-pattern: "^[a-z][A-Za-z0-9]*$"
+      variable-pattern: "^[a-z][A-Za-z0-9]*$"
+      constant-pattern: "^[A-Z][A-Z0-9_]*$"
+    wildcard-import:
+      exclude-classes:
+        - "kotlinx.coroutines.*"
+        - "androidx.compose.*"
+    no-consecutive-blank-lines: true
+    no-trailing-whitespace: true
+    no-unused-imports: true
+    no-wildcard-imports: true
+    package-name: "[a-z]+(\.[a-z][a-z0-9]*)*"
+    trailing-comma:
+      allow-trailing-comma: true
+  experimental:
+    disabled: true
+  custom:
+    disabled: true
+
+output:
+  reporters:
+    - type: plain
+    - type: checkstyle
+      file: build/reports/ktlint/ktlint-checkstyle.xml
+    - type: json
+      file: build/reports/ktlint/ktlint-report.json
+
+filters:
+  - ".*/build/.*"
+  - ".*/generated/.*"
+  - ".*/test/.*/resources/.*"

@@ -1,0 +1,300 @@
+<resources>
+    <!-- App Info -->
+    <string name="app_name">CycleTrack</string>
+    <string name="app_short_name">CycleTrack</string>
+
+    <!-- Generic -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Salvar</string>
+    <string name="delete">Excluir</string>
+    <string name="edit">Editar</string>
+    <string name="done">ConcluÃ­do</string>
+    <string name="next">PrÃ³ximo</string>
+    <string name="back">Voltar</string>
+    <string name="skip">Pular</string>
+    <string name="action_continue">Continuar</string>
+    <string name="loading">Carregandoâ€¦</string>
+    <string name="error">Erro</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="close">Fechar</string>
+    <string name="search">Buscar</string>
+    <string name="filter">Filtrar</string>
+    <string name="sort">Ordenar</string>
+    <string name="settings">ConfiguraÃ§Ãµes</string>
+    <string name="help">Ajuda</string>
+    <string name="about">Sobre</string>
+    <string name="version">VersÃ£o %1$s</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Bem-vinda ao CycleTrack</string>
+    <string name="onboarding_welcome_subtitle">Seu companheiro inteligente para saÃºde menstrual e reprodutiva</string>
+    <string name="onboarding_cycle_info_title">Conte-nos sobre seu ciclo</string>
+    <string name="onboarding_cycle_info_subtitle">Isso nos ajuda a personalizar suas previsÃµes</string>
+    <string name="onboarding_period_tracking_title">Acompanhe sua menstruaÃ§Ã£o</string>
+    <string name="onboarding_period_tracking_subtitle">Registre inÃ­cio, fim, fluxo e sintomas facilmente</string>
+    <string name="onboarding_predictions_title">PrevisÃµes inteligentes</string>
+    <string name="onboarding_predictions_subtitle">Algoritmo baseado em ciÃªncia para prever seu prÃ³ximo ciclo</string>
+    <string name="onboarding_symptoms_title">Registre sintomas</string>
+    <string name="onboarding_symptoms_subtitle">Mais de 40 sintomas categorizados para vocÃª acompanhar</string>
+    <string name="onboarding_privacy_title">Sua privacidade importa</string>
+    <string name="onboarding_privacy_subtitle">Dados criptografados, LGPD/GDPR, exportaÃ§Ã£o a qualquer momento</string>
+    <string name="onboarding_notifications_title">Lembretes personalizados</string>
+    <string name="onboarding_notifications_subtitle">NÃ£o perca nenhuma data importante</string>
+    <string name="onboarding_partner_title">Compartilhe com seu parceiro</string>
+    <string name="onboarding_partner_subtitle">Convide para ver seu ciclo, janela fÃ©rtil e mais</string>
+    <string name="onboarding_premium_title">Desbloqueie o Premium</string>
+    <string name="onboarding_premium_subtitle">Insights avanÃ§ados, conteÃºdo exclusivo e mais</string>
+
+    <!-- Auth -->
+    <string name="login_title">Entrar</string>
+    <string name="login_subtitle">Acesse sua conta para continuar</string>
+    <string name="register_title">Criar conta</string>
+    <string name="register_subtitle">Comece a acompanhar seu ciclo hoje</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Senha</string>
+    <string name="confirm_password_hint">Confirmar senha</string>
+    <string name="display_name_hint">Nome de exibiÃ§Ã£o</string>
+    <string name="forgot_password">Esqueci a senha</string>
+    <string name="no_account">NÃ£o tem conta? </string>
+    <string name="has_account">JÃ¡ tem conta? </string>
+    <string name="create_account">Criar conta</string>
+    <string name="sign_in">Entrar</string>
+    <string name="continue_with_google">Continuar com Google</string>
+    <string name="continue_anonymous">Continuar anonimamente</string>
+    <string name="anonymous_mode_info">Seus dados ficam sÃ³ no dispositivo. Pode criar conta depois.</string>
+
+    <!-- Home / Calendar -->
+    <string name="home_title">CycleTrack</string>
+    <string name="today">Hoje</string>
+    <string name="cycle_day">Dia %1$d do ciclo</string>
+    <string name="period_day">Dia %1$d da menstruaÃ§Ã£o</string>
+    <string name="days_until_period">%1$d dias atÃ© a prÃ³xima menstruaÃ§Ã£o</string>
+    <string name="period_due_tomorrow">MenstruaÃ§Ã£o prevista para amanhÃ£</string>
+    <string name="period_due_today">MenstruaÃ§Ã£o prevista para hoje</string>
+    <string name="fertile_window_active">VocÃª estÃ¡ na janela fÃ©rtil</string>
+    <string name="ovulation_today">OvulaÃ§Ã£o prevista para hoje</string>
+    <string name="pms_active">PossÃ­vel TPM</string>
+    <string name="log_period">Registrar menstruaÃ§Ã£o</string>
+    <string name="log_symptoms">Registrar sintomas</string>
+    <string name="view_calendar">Ver calendÃ¡rio</string>
+    <string name="view_insights">Ver insights</string>
+
+    <!-- Cycle Logging -->
+    <string name="period_started_title">MenstruaÃ§Ã£o iniciou</string>
+    <string name="period_ended_title">MenstruaÃ§Ã£o terminou</string>
+    <string name="flow_level">Intensidade do fluxo</string>
+    <string name="flow_spotting">Escape</string>
+    <string name="flow_light">Leve</string>
+    <string name="flow_medium">MÃ©dio</string>
+    <string name="flow_heavy">Intenso</string>
+    <string name="period_length">DuraÃ§Ã£o (dias)</string>
+    <string name="cycle_length">DuraÃ§Ã£o do ciclo (dias)</string>
+    <string name="notes">ObservaÃ§Ãµes</string>
+
+    <!-- Symptoms -->
+    <string name="symptoms_title">Sintomas</string>
+    <string name="add_symptom">Adicionar sintoma</string>
+    <string name="symptom_categories">Categorias</string>
+    <string name="category_physical">FÃ­sicos</string>
+    <string name="category_emotional">Emocionais</string>
+    <string name="category_discharge">Corrimento</string>
+    <string name="category_pain">Dores</string>
+    <string name="category_lifestyle">Estilo de vida</string>
+    <string name="severity_mild">Leve</string>
+    <string name="severity_moderate">Moderado</string>
+    <string name="severity_severe">Intenso</string>
+
+    <!-- Predictions -->
+    <string name="predictions_title">PrevisÃµes</string>
+    <string name="next_period">PrÃ³xima menstruaÃ§Ã£o</string>
+    <string name="next_ovulation">PrÃ³xima ovulaÃ§Ã£o</string>
+    <string name="fertile_window">Janela fÃ©rtil</string>
+    <string name="pms_prediction">TPM prevista</string>
+    <string name="confidence_high">Alta confianÃ§a</string>
+    <string name="confidence_medium">ConfianÃ§a mÃ©dia</string>
+    <string name="confidence_low">Baixa confianÃ§a</string>
+    <string name="prediction_disclaimer">PrevisÃµes baseadas em mÃ©dias. Consulte um mÃ©dico para aconselhamento mÃ©dico.</string>
+
+    <!-- Pregnancy -->
+    <string name="pregnancy_title">Gravidez</string>
+    <string name="pregnancy_mode_title">Modo Gravidez</string>
+    <string name="pregnancy_mode_subtitle">Acompanhe semana a semana o desenvolvimento do seu bebÃª</string>
+    <string name="due_date">Data prevista do parto</string>
+    <string name="current_week">Semana %1$d</string>
+    <string name="trimester_1">1Âº Trimestre</string>
+    <string name="trimester_2">2Âº Trimestre</string>
+    <string name="trimester_3">3Âº Trimestre</string>
+    <string name="baby_size">Tamanho do bebÃª</string>
+    <string name="weight_gain">Ganho de peso</string>
+    <string name="appointments">Consultas</string>
+    <string name="tests">Exames</string>
+    <string name="pregnancy_symptoms">Sintomas da gravidez</string>
+
+    <!-- Partner -->
+    <string name="partner_title">Modo Parceiro</string>
+    <string name="partner_subtitle">Compartilhe seu ciclo com quem vocÃª confia</string>
+    <string name="invite_partner">Convidar parceiro</string>
+    <string name="partner_email">Email do parceiro</string>
+    <string name="invitation_sent">Convite enviado!</string>
+    <string name="invitation_accepted">Convite aceito</string>
+    <string name="share_level">NÃ­vel de compartilhamento</string>
+    <string name="share_full">Completo</string>
+    <string name="share_cycle_only">Apenas ciclo</string>
+    <string name="share_fertility_only">Apenas fertilidade</string>
+    <string name="share_insights_only">Apenas insights</string>
+    <string name="partner_notifications">NotificaÃ§Ãµes para parceiro</string>
+    <string name="revoke_partner">Remover parceiro</string>
+
+    <!-- Premium -->
+    <string name="premium_title">CycleTrack Premium</string>
+    <string name="premium_subtitle">Desbloqueie todos os recursos</string>
+    <string name="premium_feature_insights">Insights avanÃ§ados e IA</string>
+    <string name="premium_feature_content">ConteÃºdo exclusivo</string>
+    <string name="premium_feature_export">ExportaÃ§Ã£o ilimitada</string>
+    <string name="premium_feature_customization">PersonalizaÃ§Ã£o completa</string>
+    <string name="premium_feature_no_ads">Sem anÃºncios</string>
+    <string name="premium_feature_priority_support">Suporte prioritÃ¡rio</string>
+    <string name="subscribe_monthly">Mensal - %1$s/mÃªs</string>
+    <string name="subscribe_yearly">Anual - %1$s/ano (economize %2$d%%)</string>
+    <string name="free_trial">%1$d dias grÃ¡tis</string>
+    <string name="restore_purchases">Restaurar compras</string>
+    <string name="manage_subscription">Gerenciar assinatura</string>
+
+    <!-- Settings -->
+    <string name="settings_account">Conta</string>
+    <string name="settings_profile">Perfil</string>
+    <string name="settings_cycle">Ciclo</string>
+    <string name="settings_notifications">NotificaÃ§Ãµes</string>
+    <string name="settings_display">AparÃªncia</string>
+    <string name="settings_privacy">Privacidade</string>
+    <string name="settings_security">SeguranÃ§a</string>
+    <string name="settings_data">Dados</string>
+    <string name="settings_about">Sobre</string>
+
+    <!-- Profile -->
+    <string name="profile_email">Email</string>
+    <string name="profile_display_name">Nome de exibiÃ§Ã£o</string>
+    <string name="profile_date_of_birth">Data de nascimento</string>
+    <string name="profile_height">Altura</string>
+    <string name="profile_weight">Peso</string>
+    <string name="profile_gender">GÃªnero</string>
+
+    <!-- Cycle Settings -->
+    <string name="cycle_average_length">DuraÃ§Ã£o mÃ©dia do ciclo</string>
+    <string name="cycle_average_period">DuraÃ§Ã£o mÃ©dia da menstruaÃ§Ã£o</string>
+    <string name="cycle_regularity">Regularidade</string>
+    <string name="cycle_contraception">ContracepÃ§Ã£o</string>
+    <string name="cycle_last_period">Ãšltima menstruaÃ§Ã£o</string>
+
+    <!-- Notifications -->
+    <string name="notif_period_reminder">Lembrete de menstruaÃ§Ã£o</string>
+    <string name="notif_period_days_before">Avisar %1$d dias antes</string>
+    <string name="notif_fertile_window">Janela fÃ©rtil</string>
+    <string name="notif_ovulation">OvulaÃ§Ã£o</string>
+    <string name="notif_pms">TPM</string>
+    <string name="notif_pill">Lembrete de pÃ­lula</string>
+    <string name="notif_pill_time">HorÃ¡rio da pÃ­lula</string>
+
+    <!-- Display -->
+    <string name="display_theme">Tema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="theme_system">Sistema</string>
+    <string name="display_language">Idioma</string>
+    <string name="display_temperature">Temperatura</string>
+    <string name="display_weight">Peso</string>
+    <string name="display_height">Altura</string>
+    <string name="display_first_day_week">Primeiro dia da semana</string>
+    <string name="display_calendar_view">VisualizaÃ§Ã£o do calendÃ¡rio</string>
+
+    <!-- Privacy -->
+    <string name="privacy_analytics">Analytics</string>
+    <string name="privacy_crash_reporting">RelatÃ³rios de erro</string>
+    <string name="privacy_marketing">Marketing</string>
+    <string name="privacy_health_connect">Health Connect</string>
+    <string name="privacy_data_sharing">Compartilhamento de dados</string>
+    <string name="privacy_export_data">Exportar meus dados</string>
+    <string name="privacy_delete_account">Excluir conta</string>
+
+    <!-- Security -->
+    <string name="security_biometric">AutenticaÃ§Ã£o biomÃ©trica</string>
+    <string name="security_auto_lock">Bloqueio automÃ¡tico</string>
+    <string name="security_auto_lock_timeout">Tempo para bloqueio</string>
+    <string name="security_change_password">Alterar senha</string>
+
+    <!-- Data -->
+    <string name="data_sync">SincronizaÃ§Ã£o automÃ¡tica</string>
+    <string name="data_sync_frequency">FrequÃªncia</string>
+    <string name="data_backup">Backup automÃ¡tico</string>
+    <string name="data_backup_frequency">FrequÃªncia do backup</string>
+    <string name="data_export">Exportar dados</string>
+    <string name="data_export_format">Formato</string>
+
+    <!-- Export -->
+    <string name="export_title">Exportar dados</string>
+    <string name="export_subtitle">Baixe uma cÃ³pia completa dos seus dados (LGPD/GDPR Art. 20)</string>
+    <string name="export_format_json">JSON (completo)</string>
+    <string name="export_format_csv">CSV (planilhas)</string>
+    <string name="export_format_pdf">PDF (relatÃ³rio)</string>
+    <string name="export_include_cycles">Ciclos menstruais</string>
+    <string name="export_include_symptoms">Sintomas</string>
+    <string name="export_include_predictions">PrevisÃµes</string>
+    <string name="export_include_pregnancy">Gravidez</string>
+    <string name="export_include_partner">Dados do parceiro</string>
+    <string name="export_include_health">Health Connect</string>
+    <string name="export_include_settings">ConfiguraÃ§Ãµes</string>
+    <string name="export_include_content">ConteÃºdo lido</string>
+    <string name="export_date_range">PerÃ­odo</string>
+    <string name="export_anonymize">Anonimizar</string>
+    <string name="export_requested">ExportaÃ§Ã£o solicitada</string>
+    <string name="export_processing">Processandoâ€¦</string>
+    <string name="export_ready">Pronto para download</string>
+    <string name="export_failed">Falhou</string>
+
+    <!-- Health Connect -->
+    <string name="health_connect_title">Health Connect</string>
+    <string name="health_connect_subtitle">Sincronize com apps de saÃºde do Google</string>
+    <string name="health_connect_enable">Ativar sincronizaÃ§Ã£o</string>
+    <string name="health_connect_permissions">PermissÃµes</string>
+    <string name="health_connect_sync_now">Sincronizar agora</string>
+    <string name="health_connect_last_sync">Ãšltima sincronizaÃ§Ã£o: %1$s</string>
+
+    <!-- Content -->
+    <string name="content_title">ConteÃºdo</string>
+    <string name="content_articles">Artigos</string>
+    <string name="content_videos">VÃ­deos</string>
+    <string name="content_tips">Dicas</string>
+    <string name="content_for_you">Para vocÃª</string>
+    <string name="content_premium">Premium</string>
+    <string name="content_bookmarked">Salvos</string>
+    <string name="content_read_time">%1$d min de leitura</string>
+    <string name="content_watch_time">%1$d min de vÃ­deo</string>
+
+    <!-- Errors -->
+    <string name="error_network">Sem conexÃ£o. Verifique sua internet.</string>
+    <string name="error_auth_session">SessÃ£o expirada. FaÃ§a login novamente.</string>
+    <string name="error_generic">Algo deu errado. Tente novamente.</string>
+    <string name="error_validation">Verifique os campos destacados.</string>
+    <string name="error_permission">PermissÃ£o necessÃ¡ria.</string>
+    <string name="error_not_found">NÃ£o encontrado.</string>
+    <string name="error_conflict">Conflito de dados. Sincronize e tente novamente.</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_calendar_day">Dia %1$d, %2$s</string>
+    <string name="a11y_period_active">MenstruaÃ§Ã£o ativa</string>
+    <string name="a11y_fertile_window">Janela fÃ©rtil ativa</string>
+    <string name="a11y_ovulation">OvulaÃ§Ã£o prevista</string>
+    <string name="a11y_symptom_logged">Sintoma registrado</string>
+    <string name="a11y_button_log_period">BotÃ£o registrar menstruaÃ§Ã£o</string>
+    <string name="a11y_button_log_symptom">BotÃ£o registrar sintoma</string>
+
+    <!-- Legal -->
+    <string name="terms_of_service">Termos de Uso</string>
+    <string name="privacy_policy">PolÃ­tica de Privacidade</string>
+    <string name="data_processing_consent">Concordo com o processamento dos meus dados</string>
+    <string name="marketing_consent">Aceito receber comunicaÃ§Ãµes de marketing</string>
+
+    <!-- Placeholder for Google Sign-In -->
+    <string name="default_web_client_id" translatable="false">YOUR_WEB_CLIENT_ID.apps.googleusercontent.com</string>
+</resources>

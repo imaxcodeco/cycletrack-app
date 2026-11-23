@@ -1,0 +1,209 @@
+build:
+  maxIssues: 100
+  weights:
+    complexity: 2
+    LongParameterList: 1
+    style: 1
+    comments: 1
+
+config:
+  validation: true
+  warnsAsErrors: false
+
+extends:
+  - config: "default"
+
+comments:
+  CommentOverPrivateFunction: false
+  CommentOverPrivateProperty: false
+  EndOfSentenceFormat: "([.?!]|[.?!]\\s+\")"
+  active: true
+
+complexity:
+  ComplexCondition:
+    threshold: 4
+    active: true
+  ComplexInterface:
+    threshold: 10
+    includeStaticDeclarations: false
+    active: true
+  ComplexMethod:
+    threshold: 15
+    ignoreSingleWhenExpression: true
+    ignoreSimpleWhenEntries: true
+    active: true
+  LongMethod:
+    threshold: 60
+    active: true
+  LongParameterList:
+    threshold: 6
+    ignoreDefaultParameters: true
+    ignoreDataClasses: true
+    ignoreAnnotatedParameter: ""
+    active: true
+  MethodOverloading:
+    threshold: 6
+    active: true
+  NestedBlockDepth:
+    threshold: 4
+    active: true
+  StringLiteralDuplication:
+    threshold: 3
+    ignoreAnnotation: true
+    ignoreEntrypointDeclaration: true
+    active: true
+  TooManyFunctions:
+    thresholdInFiles: 15
+    thresholdInClasses: 15
+    thresholdInInterfaces: 15
+    thresholdInObjects: 15
+    thresholdInEnums: 15
+    ignoreDeprecated: false
+    ignorePrivate: false
+    ignoreOverridden: false
+    active: true
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: true
+  active: true
+
+formatting:
+  MaximumLineLength:
+    maxLineLength: 120
+    excludePackageStatements: true
+    excludeImportStatements: true
+    excludeCommentStatements: false
+    active: true
+  active: true
+
+naming:
+  ClassNaming:
+    active: true
+  ConstructorParameterNaming:
+    active: true
+  FunctionNaming:
+    active: true
+  FunctionParameterNaming:
+    active: true
+  MemberName:
+    active: true
+    namePattern: "^[a-z][A-Za-z0-9]*$"
+  PackageNaming:
+    active: true
+  PropertyNaming:
+    active: true
+    namePattern: "^[a-z][A-Za-z0-9]*$"
+  VariableNaming:
+    active: true
+    namePattern: "^[a-z][A-Za-z0-9]*$"
+  active: true
+
+performance:
+  ArrayPrimitive:
+    active: true
+  SpreadOperator:
+    active: true
+  active: true
+
+style:
+  BooleanExpressionComplexity:
+    threshold: 3
+    active: true
+  CollapsibleIfStatements:
+    active: true
+  DataClassContainsFunctions:
+    active: true
+  DestructuringDeclarationWithTooManyEntries:
+    threshold: 5
+    active: true
+  EqualsNullCall:
+    active: true
+  ExplicitCollectionElementAccessMethod:
+    active: true
+  ExplicitItLambdaParameter:
+    active: true
+  ForLoopWithTooManyJumpStatements:
+    active: true
+  FunctionOnlyReturningConstant:
+    active: true
+  LoopWithTooManyJumpStatements:
+    active: true
+  MagicNumber:
+    ignoreNumbers: "-1,0,1,2,3,4,5,6,7,8,9,10,12,14,16,24,28,30,31,60,100,1000"
+    ignorePropertyDeclaration: true
+    ignoreLocalVariableDeclaration: true
+    ignoreConstantDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignoreAnnotation: true
+    active: true
+  MandatoryBracesIfStatements:
+    active: true
+  MandatoryBracesLoops:
+    active: true
+  MaxLineLength:
+    maxLineLength: 120
+    active: true
+  MayBeConst:
+    active: true
+  ModifierOrder:
+    active: true
+  NestedScopeFunctions:
+    active: true
+  NewLineAtEndOfFile:
+    active: true
+  NoWildcardImports:
+    active: true
+  ObjectLiteralToLambda:
+    active: true
+  OptionalAbstractKeyword:
+    active: true
+  OptionalUnit:
+    active: true
+  OptionalWhenBraces:
+    active: true
+  PreferToOverPairSyntax:
+    active: true
+  ProtectedMemberInFinalClass:
+    active: true
+  RedundantExplicitType:
+    active: true
+  RedundantHigherOrderFunctionUsage:
+    active: true
+  ReturnCount:
+    threshold: 6
+    active: true
+  SafeCast:
+    active: true
+  SingleExpressionFunction:
+    active: true
+  TrailingWhitespace:
+    active: true
+  UnderscoresInNumericLiterals:
+    active: true
+  UnnecessaryAnnotationUseSiteTarget:
+    active: true
+  UnnecessaryApply:
+    active: true
+  UnnecessaryInheritance:
+    active: true
+  UnnecessaryLet:
+    active: true
+  UnnecessaryParentheses:
+    active: true
+  UntilInsteadOfRangeTo:
+    active: true
+  UtilityClassWithPublicConstructor:
+    active: true
+  VarCouldBeVal:
+    active: true
+  WildcardImport:
+    active: true
+  active: true
+
+comments:
+  UndocumentedPublicClass:
+    active: false
+  UndocumentedPublicFunction:
+    active: false
+  active: true

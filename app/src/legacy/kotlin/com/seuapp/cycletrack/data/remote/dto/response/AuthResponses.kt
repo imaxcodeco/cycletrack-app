@@ -1,0 +1,88 @@
+package com.seuapp.cycletrack.data.remote.dto.response
+
+import kotlinx.serialization.Serializable
+
+/**
+ * DTOs para respostas de autenticação.
+ */
+@Serializable
+data class AuthResponse(
+    val accessToken: String,
+    val refreshToken: String,
+    val tokenType: String = "Bearer",
+    val expiresIn: Long = 3600,
+    val user: UserProfileResponse
+)
+
+@Serializable
+data class UserProfileResponse(
+    val id: String,
+    val email: String,
+    val displayName: String,
+    val dateOfBirth: String?,
+    val heightCm: Int,
+    val weightKg: Float,
+    val gender: String,
+    val averageCycleLength: Int,
+    val averagePeriodLength: Int,
+    val averageLutealPhaseLength: Int,
+    val cycleRegularity: String,
+    val contraceptionMethod: String,
+    val contraceptionStartDate: String?,
+    val lastPeriodDate: String?,
+    val periodDurationDays: Int,
+    val pregnancyStatus: String,
+    val pregnancyDueDate: String?,
+    val pregnancyStartDate: String?,
+    val childrenCount: Int,
+    val lastPregnancyOutcome: String?,
+    val hasPcos: Boolean,
+    val hasEndometriosis: Boolean,
+    val hasThyroidCondition: Boolean,
+    val hasDiabetes: Boolean,
+    val medicalConditions: List<String>,
+    val periodReminderEnabled: Boolean,
+    val periodReminderDaysBefore: Int,
+    val fertileWindowReminderEnabled: Boolean,
+    val ovulationReminderEnabled: Boolean,
+    val pillReminderEnabled: Boolean,
+    val pillReminderTime: String,
+    val themeMode: String,
+    val language: String,
+    val temperatureUnit: String,
+    val weightUnit: String,
+    val heightUnit: String,
+    val firstDayOfWeek: Int,
+    val calendarViewMode: String,
+    val analyticsOptIn: Boolean,
+    val crashReportingOptIn: Boolean,
+    val marketingOptIn: Boolean,
+    val healthConnectEnabled: Boolean,
+    val healthConnectPermissionsGranted: Boolean,
+    val dataSharingConsentVersion: String,
+    val dataSharingConsentDate: Long,
+    val isAnonymousMode: Boolean,
+    val accountCreatedAt: Long,
+    val lastLoginAt: Long,
+    val emailVerified: Boolean,
+    val phoneVerified: Boolean,
+    val biometricEnabled: Boolean,
+    val autoLockEnabled: Boolean,
+    val autoLockTimeoutMinutes: Int,
+    val subscriptionStatus: String,
+    val subscriptionProductId: String,
+    val subscriptionExpiresAt: Long,
+    val subscriptionAutoRenew: Boolean,
+    val subscriptionPlatform: String,
+    val trialUsed: Boolean,
+    val partnerModeEnabled: Boolean,
+    val partnerId: String,
+    val partnerShareLevel: String,
+    val partnerInvitationSent: Boolean,
+    val partnerInvitationAcceptedAt: Long,
+    val autoSyncEnabled: Boolean,
+    val syncFrequencyMinutes: Int,
+    val lastBackupAt: Long,
+    val backupFrequencyDays: Int,
+    val exportFormat: String
+)
