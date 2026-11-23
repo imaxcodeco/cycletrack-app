@@ -42,18 +42,18 @@ private data class ReminderCategory(
 
 private val reminderCategories = listOf(
     ReminderCategory(
-        title = "Lembrete de menstruacao",
-        subtitle = "Avisa alguns dias antes do periodo previsto",
+        title = "Lembrete de menstruação",
+        subtitle = "Avisa alguns dias antes do período previsto",
         times = listOf("08:00", "12:00", "20:00")
     ),
     ReminderCategory(
-        title = "Lembrete de ovulacao",
-        subtitle = "Avisa no inicio da janela fertil",
+        title = "Lembrete de ovulação",
+        subtitle = "Avisa no início da janela fértil",
         times = listOf("08:00", "12:00", "20:00")
     ),
     ReminderCategory(
-        title = "Dica diaria",
-        subtitle = "Conteudo personalizado sobre seu ciclo",
+        title = "Dica diária",
+        subtitle = "Conteúdo personalizado sobre seu ciclo",
         times = listOf("08:00", "12:00", "20:00")
     )
 )

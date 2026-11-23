@@ -247,7 +247,7 @@ fun LoggingScreen(viewModel: SymptomViewModel = hiltViewModel()) {
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
             ) {
                 Text(
-                    text = "As informacoes sao salvas automaticamente no aparelho " +
+                    text = "As informações são salvas automaticamente no aparelho " +
                         "para ${selectedDate.format(DateTimeFormatter.ofPattern("d 'de' MMMM", ptBr))}.",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(CycleTrackDimens.spacingMd)

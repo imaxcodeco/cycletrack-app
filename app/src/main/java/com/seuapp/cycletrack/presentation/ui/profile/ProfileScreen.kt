@@ -22,7 +22,6 @@ import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
@@ -62,8 +61,8 @@ import com.seuapp.cycletrack.R
 private const val DEFAULT_USER_ID = "user_123"
 
 private val goalStep = OnboardingStep.MultiChoiceGrid(
-    title = "O que voce quer?",
-    subtitle = "Escolha a opcao que mais combina com voce",
+    title = "O que você quer?",
+    subtitle = "Escolha a opção que mais combina com você",
     options = listOf(
         GridOption(GOAL_PERIOD, "Monitorar minha menstruação", R.drawable.goal_period),
         GridOption(GOAL_PREGNANT, "Engravidar", R.drawable.goal_body),
@@ -116,11 +115,10 @@ fun ProfileScreen(
                         .background(colors.primaryContainer, CircleShape),
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(
-                        Icons.Filled.Person,
-                        contentDescription = null,
-                        tint = colors.primary,
-                        modifier = Modifier.size(32.dp)
+                    androidx.compose.foundation.Image(
+                        painter = androidx.compose.ui.res.painterResource(id = R.drawable.logo_cycletrack),
+                        contentDescription = "CycleTrack",
+                        modifier = Modifier.size(40.dp)
                     )
                 }
                 Spacer(Modifier.width(CycleTrackDimens.spacingMd))
@@ -153,7 +151,7 @@ fun ProfileScreen(
                     )
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        text = "Previsoes refinadas, exportacao de dados e compartilhamento com o parceiro.",
+                        text = "Previsões refinadas, exportação de dados e compartilhamento com o parceiro.",
                         style = MaterialTheme.typography.bodySmall,
                         color = colors.onPrimaryContainer
                     )
@@ -191,7 +189,7 @@ fun ProfileScreen(
 
         item {
             Text(
-                text = "Preferencias",
+                text = "Preferências",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
@@ -206,7 +204,7 @@ fun ProfileScreen(
                     ActionRow(
                         icon = Icons.Filled.Notifications,
                         title = "Lembretes",
-                        subtitle = "Categorias e horarios de periodo, ovulacao e dicas",
+                        subtitle = "Categorias e horários de período, ovulação e dicas",
                         onClick = onNavigateToReminders
                     )
                     Divider()
@@ -238,7 +236,7 @@ fun ProfileScreen(
                     ActionRow(
                         icon = Icons.Filled.Settings,
                         title = "Ajustes do ciclo",
-                        subtitle = "Duracao media e do periodo",
+                        subtitle = "Duração média e do período",
                         onClick = onNavigateToCycleSettings
                     )
                     Divider()
@@ -251,7 +249,7 @@ fun ProfileScreen(
                     Divider()
                     ActionRow(Icons.Filled.Download, "Exportar meus dados", "CSV ou PDF")
                     Divider()
-                    ActionRow(Icons.Filled.Lock, "Privacidade e seguranca", "Senha e biometria")
+                    ActionRow(Icons.Filled.Lock, "Privacidade e segurança", "Senha e biometria")
                 }
             }
         }

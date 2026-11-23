@@ -100,7 +100,7 @@ fun CycleSettingsScreen(onBack: () -> Unit = {}, viewModel: HomeViewModel = hilt
                     Icon(Icons.Filled.ArrowBack, contentDescription = "Voltar")
                 }
                 Text(
-                    text = "Ciclo e ovulacao",
+                    text = "Ciclo e ovulação",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -108,7 +108,7 @@ fun CycleSettingsScreen(onBack: () -> Unit = {}, viewModel: HomeViewModel = hilt
         }
 
         item {
-            SettingsCard(title = "Duracao media do ciclo", subtitle = "Numero de dias entre menstruacoes") {
+            SettingsCard(title = "Duração média do ciclo", subtitle = "Número de dias entre menstruações") {
                 Stepper(
                     value = cycleLength,
                     unit = "dias",
@@ -119,7 +119,7 @@ fun CycleSettingsScreen(onBack: () -> Unit = {}, viewModel: HomeViewModel = hilt
         }
 
         item {
-            SettingsCard(title = "Duracao da menstruacao", subtitle = "Numero medio de dias de sangramento") {
+            SettingsCard(title = "Duração da menstruação", subtitle = "Número médio de dias de sangramento") {
                 Stepper(
                     value = periodLength,
                     unit = "dias",
@@ -136,19 +136,19 @@ fun CycleSettingsScreen(onBack: () -> Unit = {}, viewModel: HomeViewModel = hilt
             ) {
                 Column(Modifier.padding(CycleTrackDimens.spacingMd)) {
                     Text(
-                        text = "Previa",
+                        text = "Prévia",
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.SemiBold,
                         color = colors.onPrimaryContainer
                     )
                     Spacer(Modifier.height(CycleTrackDimens.spacingSm))
                     PreviewRow(
-                        "Proxima menstruacao",
+                        "Próxima menstruação",
                         preview?.let { it.startDate.plusDays(it.cycleLength.toLong()).format(dateFormatter) }
                     )
-                    PreviewRow("Ovulacao estimada", preview?.ovulationDate?.format(dateFormatter))
+                    PreviewRow("Ovulação estimada", preview?.ovulationDate?.format(dateFormatter))
                     PreviewRow(
-                        "Janela fertil",
+                        "Janela fértil",
                         if (preview?.fertileWindowStart != null && preview.fertileWindowEnd != null) {
                             "${preview.fertileWindowStart.format(dateFormatter)} - ${preview.fertileWindowEnd.format(dateFormatter)}"
                         } else {

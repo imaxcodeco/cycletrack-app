@@ -2,6 +2,7 @@
 
 package com.seuapp.cycletrack.presentation.ui.calendar
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -38,6 +40,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -101,12 +104,20 @@ fun CalendarScreen(viewModel: HomeViewModel = hiltViewModel()) {
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
             ) {
                 Column(Modifier.padding(CycleTrackDimens.spacingMd)) {
-                    Text("Legenda", style = MaterialTheme.typography.labelLarge)
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Image(
+                            painter = painterResource(id = com.seuapp.cycletrack.R.drawable.icon_calendar_heart),
+                            contentDescription = null,
+                            modifier = Modifier.size(CycleTrackDimens.iconMd)
+                        )
+                        Spacer(Modifier.width(CycleTrackDimens.spacingXs))
+                        Text("Legenda", style = MaterialTheme.typography.labelLarge)
+                    }
                     Spacer(Modifier.height(CycleTrackDimens.spacingSm))
-                    LegendRow(colors.phaseMenstrual, "Periodo")
-                    LegendRow(colors.success, "Janela fertile")
-                    LegendRow(colors.phaseOvulation, "Ovulacao")
-                    LegendRow(colors.phaseMenstrual.copy(alpha = 0.35f), "Periodo previsto")
+                    LegendRow(colors.phaseMenstrual, "Período")
+                    LegendRow(colors.success, "Janela fértil")
+                    LegendRow(colors.phaseOvulation, "Ovulação")
+                    LegendRow(colors.phaseMenstrual.copy(alpha = 0.35f), "Período previsto")
                 }
             }
         }
@@ -300,10 +311,10 @@ private fun LegendRow(color: Color, label: String) {
 }
 
 private fun describeDay(date: LocalDate, cycleDays: Map<LocalDate, DayKind>): String = when (cycleDays[date]) {
-    DayKind.PERIOD -> "Dia de periodo"
-    DayKind.FERTILE -> "Dentro da janela fertile"
-    DayKind.OVULATION -> "Ovulacao estimada"
-    DayKind.PREDICTED -> "Periodo previsto"
+    DayKind.PERIOD -> "Dia de período"
+    DayKind.FERTILE -> "Dentro da janela fértil"
+    DayKind.OVULATION -> "Ovulação estimada"
+    DayKind.PREDICTED -> "Período previsto"
     else -> "Sem registro especial"
 }
 

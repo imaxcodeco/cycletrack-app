@@ -32,15 +32,16 @@ import androidx.compose.ui.text.TextStyle
 
 // ============ Color Schemes ============
 
+// Paleta derivada da logomarca CycleTrack (ver assets em res/drawable/logo_cycletrack.png)
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFFE84D6E),
+    primary = Color(0xFFCC1262),
     onPrimary = Color.White,
-    primaryContainer = Color(0xFFFFE0EC),
-    onPrimaryContainer = Color(0xFF701D33),
-    secondary = Color(0xFF22C55E),
-    onSecondary = Color(0xFF14532D),
-    secondaryContainer = Color(0xFFDCFCE7),
-    onSecondaryContainer = Color(0xFF14532D),
+    primaryContainer = Color(0xFFF9E3EC),
+    onPrimaryContainer = Color(0xFF8F1C60),
+    secondary = Color(0xFF4BAF4F),
+    onSecondary = Color.White,
+    secondaryContainer = Color(0xFFE4F3E5),
+    onSecondaryContainer = Color(0xFF1C381D),
     tertiary = Color(0xFF3B82F6),
     onTertiary = Color.White,
     tertiaryContainer = Color(0xFFDBEAFE),
@@ -59,20 +60,20 @@ private val LightColorScheme = lightColorScheme(
     outlineVariant = Color(0xFFD4D4D4),
     inverseSurface = Color(0xFF171717),
     inverseOnSurface = Color(0xFFFAFAFA),
-    inversePrimary = Color(0xFFFF6B8A),
+    inversePrimary = Color(0xFFE37FAA),
     scrim = Color.Black,
-    surfaceTint = Color(0xFFE84D6E)
+    surfaceTint = Color(0xFFCC1262)
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFFFF6B8A),
-    onPrimary = Color(0xFF701D33),
-    primaryContainer = Color(0xFFB02E4A),
-    onPrimaryContainer = Color(0xFFFFE0EC),
-    secondary = Color(0xFF4ADE80),
-    onSecondary = Color(0xFF14532D),
-    secondaryContainer = Color(0xFF166534),
-    onSecondaryContainer = Color(0xFFDCFCE7),
+    primary = Color(0xFFE37FAA),
+    onPrimary = Color(0xFF3D0E29),
+    primaryContainer = Color(0xFF8F1C60),
+    onPrimaryContainer = Color(0xFFF9E3EC),
+    secondary = Color(0xFF93CF95),
+    onSecondary = Color(0xFF1C381D),
+    secondaryContainer = Color(0xFF347436),
+    onSecondaryContainer = Color(0xFFE4F3E5),
     tertiary = Color(0xFF60A5FA),
     onTertiary = Color(0xFF1E3A8A),
     tertiaryContainer = Color(0xFF1E40AF),
@@ -91,9 +92,9 @@ private val DarkColorScheme = darkColorScheme(
     outlineVariant = Color(0xFF404040),
     inverseSurface = Color(0xFFF5F5F5),
     inverseOnSurface = Color(0xFF171717),
-    inversePrimary = Color(0xFFE84D6E),
+    inversePrimary = Color(0xFFCC1262),
     scrim = Color.Black,
-    surfaceTint = Color(0xFFFF6B8A)
+    surfaceTint = Color(0xFFE37FAA)
 )
 
 // ============ Typography ============
@@ -260,10 +261,10 @@ fun CycleTrackColors(): CycleTrackColors {
             onTertiaryContainer = colorScheme.onTertiaryContainer,
 
             // Semantic
-            success = Color(0xFF22C55E),
+            success = Color(0xFF4BAF4F),
             onSuccess = Color.White,
-            successContainer = Color(0xFFDCFCE7),
-            onSuccessContainer = Color(0xFF14532D),
+            successContainer = Color(0xFFE4F3E5),
+            onSuccessContainer = Color(0xFF1C381D),
             warning = Color(0xFFF59E0B),
             onWarning = Color(0xFF14532D),
             warningContainer = Color(0xFFFEF3C7),
@@ -290,14 +291,14 @@ fun CycleTrackColors(): CycleTrackColors {
             outlineVariant = colorScheme.outlineVariant,
 
             // Cycle Phases
-            phaseMenstrual = Color(0xFFE84D6E),
-            phaseFollicular = Color(0xFF22C55E),
+            phaseMenstrual = Color(0xFFCC1262),
+            phaseFollicular = Color(0xFF4BAF4F),
             phaseOvulation = Color(0xFFF59E0B),
             phaseLuteal = Color(0xFF3B82F6),
 
             // Symptom Categories
-            categoryPhysical = Color(0xFFB02E4A),
-            categoryPhysicalContainer = Color(0xFFFFE0EC),
+            categoryPhysical = Color(0xFF8F1C60),
+            categoryPhysicalContainer = Color(0xFFF9E3EC),
             categoryEmotional = Color(0xFF3730A3),
             categoryEmotionalContainer = Color(0xFFE0E7FF),
             categoryDischarge = Color(0xFF166534),
@@ -309,8 +310,13 @@ fun CycleTrackColors(): CycleTrackColors {
 
             // Pregnancy Trimesters
             trimester1 = Color(0xFF3B82F6),
-            trimester2 = Color(0xFF22C55E),
-            trimester3 = Color(0xFFE84D6E),
+            trimester2 = Color(0xFF4BAF4F),
+            trimester3 = Color(0xFFCC1262),
+
+            // Accent Teal (ilustracoes de sinais do corpo, modo parceiro)
+            brandTeal = Color(0xFF1EC4BC),
+            brandTealContainer = Color(0xFFDDF6F5),
+            onBrandTealContainer = Color(0xFF103E3C),
 
             // Inverse
             inverseSurface = colorScheme.inverseSurface,
@@ -390,6 +396,11 @@ data class CycleTrackColors(
     val trimester1: Color,
     val trimester2: Color,
     val trimester3: Color,
+
+    // Accent Teal
+    val brandTeal: Color,
+    val brandTealContainer: Color,
+    val onBrandTealContainer: Color,
 
     // Inverse
     val inverseSurface: Color,

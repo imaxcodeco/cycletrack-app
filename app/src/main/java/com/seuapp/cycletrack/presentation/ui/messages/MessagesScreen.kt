@@ -87,7 +87,7 @@ fun MessagesScreen(onOpenChat: (String) -> Unit = {}, viewModel: HomeViewModel =
                 Spacer(Modifier.width(CycleTrackDimens.spacingSm))
                 Column(Modifier.weight(1f)) {
                     Text(
-                        text = "Assistente de Saude",
+                        text = "Assistente de Saúde",
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.SemiBold
                     )

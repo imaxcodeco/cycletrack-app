@@ -45,7 +45,7 @@ import com.seuapp.cycletrack.presentation.viewmodel.PartnerViewModel
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-private val partnerTeal = Color(0xFF4FBDB5)
+private val partnerTeal = Color(0xFF1EC4BC)
 private val ptBr = Locale("pt", "BR")
 private val dateFormatter = DateTimeFormatter.ofPattern("d 'de' MMMM", ptBr)
 
@@ -111,8 +111,8 @@ private fun PartnerLandingContent(onBack: () -> Unit, onGenerateInvite: () -> Un
                 Spacer(Modifier.height(CycleTrackDimens.spacingMd))
                 listOf(
                     "Mostre dados do seu ciclo ao seu parceiro.",
-                    "Voces dois recebem orientacoes sobre os melhores dias.",
-                    "Ele recebe informacoes sobre fertilidade e como pode ajudar."
+                    "Vocês dois recebem orientações sobre os melhores dias.",
+                    "Ele recebe informações sobre fertilidade e como pode ajudar."
                 ).forEach { line ->
                     Row(verticalAlignment = Alignment.Top, modifier = Modifier.padding(vertical = 3.dp)) {
                         Icon(Icons.Filled.Check, contentDescription = null, tint = Color.White, modifier = Modifier.padding(top = 2.dp))
@@ -137,7 +137,7 @@ private fun PartnerLandingContent(onBack: () -> Unit, onGenerateInvite: () -> Un
                 ) {
                     Column(Modifier.padding(CycleTrackDimens.spacingMd)) {
                         PreviewLine("Dia do ciclo", "10")
-                        PreviewLine("Possiveis sintomas", "Colicas, fadiga")
+                        PreviewLine("Possíveis sintomas", "Cólicas, fadiga")
                         PreviewLine("Chance de engravidar", "Alta")
                     }
                 }
@@ -189,7 +189,7 @@ private fun PartnerInviteContent(
                 colors = CardDefaults.cardColors(containerColor = partnerTeal.copy(alpha = 0.12f))
             ) {
                 Column(Modifier.padding(CycleTrackDimens.spacingMd), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Compartilhe este codigo", style = MaterialTheme.typography.bodyMedium)
+                    Text("Compartilhe este código", style = MaterialTheme.typography.bodyMedium)
                     Spacer(Modifier.height(CycleTrackDimens.spacingSm))
                     Text(
                         text = partner.inviteCode,
@@ -209,7 +209,7 @@ private fun PartnerInviteContent(
 
         item {
             Text(
-                text = "Simulacao de teste: como este ambiente nao tem um segundo aparelho, " +
+                text = "Simulação de teste: como este ambiente não tem um segundo aparelho, " +
                     "digite um nome e confirme abaixo para simular o parceiro aceitando o convite.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -220,7 +220,7 @@ private fun PartnerInviteContent(
             OutlinedTextField(
                 value = partnerName,
                 onValueChange = { partnerName = it },
-                label = { Text("Nome do parceiro (simulacao)") },
+                label = { Text("Nome do parceiro (simulação)") },
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -289,12 +289,12 @@ private fun PartnerConnectedContent(
                 colors = CardDefaults.cardColors(containerColor = partnerTeal)
             ) {
                 Column(Modifier.padding(CycleTrackDimens.spacingMd)) {
-                    Text("O que seu parceiro ve agora", color = Color.White, style = MaterialTheme.typography.titleSmall)
+                    Text("O que seu parceiro vê agora", color = Color.White, style = MaterialTheme.typography.titleSmall)
                     Spacer(Modifier.height(CycleTrackDimens.spacingSm))
                     PreviewLine("Dia do ciclo", "$dayOfCycle", color = Color.White)
-                    PreviewLine("Proxima menstruacao", nextPeriod?.format(dateFormatter) ?: "-", color = Color.White)
+                    PreviewLine("Próxima menstruação", nextPeriod?.format(dateFormatter) ?: "-", color = Color.White)
                     PreviewLine(
-                        "Janela fertil",
+                        "Janela fértil",
                         if (fertileWindow != null) {
                             "${fertileWindow!!.start.format(dateFormatter)} - ${fertileWindow!!.end.format(dateFormatter)}"
                         } else {

@@ -199,7 +199,7 @@ fun trackSteps(goal: String): List<OnboardingStep> = when (goal) {
             resultKey = "condicoes"
         ),
         OnboardingStep.Illustration(
-            image = R.drawable.onboarding_trust,
+            image = R.drawable.illustration_body_signs,
             title = "Conheça os sinais do seu corpo",
             subtitle = "Nossa equipe te ajuda a entender seu ciclo com conteúdo confiável."
         )
@@ -214,7 +214,7 @@ fun closingSteps(): List<OnboardingStep> = listOf(
     OnboardingStep.NotificationPriming,
     OnboardingStep.PercentLoading,
     OnboardingStep.Illustration(
-        image = R.drawable.onboarding_trust,
+        image = R.drawable.icon_progress_complete,
         title = "Tudo pronto para começar",
         subtitle = "Com o CycleTrack você tem o controle da sua saúde reprodutiva.",
         bullets = listOf(
@@ -224,7 +224,7 @@ fun closingSteps(): List<OnboardingStep> = listOf(
         )
     ),
     OnboardingStep.Illustration(
-        image = R.drawable.onboarding_welcome,
+        image = R.drawable.icon_checkmark_circle,
         title = "Pronto para começar!",
         subtitle = "Você receberá dicas personalizadas diárias",
         buttonText = "Começar a usar"

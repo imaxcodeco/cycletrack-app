@@ -48,15 +48,19 @@ import java.time.LocalDate
 import java.time.YearMonth
 import kotlinx.coroutines.delay
 
-private val Rose = Color(0xFFE75480)
-private val LightRose = Color(0xFFFFD6E8)
+private val Rose = Color(0xFFCC1262)
+private val LightRose = Color(0xFFF9E3EC)
 private val CardGray = Color(0xFFF5F5F5)
+private val OnboardingGradient = androidx.compose.ui.graphics.Brush.verticalGradient(
+    listOf(Color(0xFFF9E3EC), Color(0xFFFDF6F9), Color.White)
+)
 
 @Composable
 fun FullIllustrationScreen(step: OnboardingStep.Illustration, onNext: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(OnboardingGradient)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

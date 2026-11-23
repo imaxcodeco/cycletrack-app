@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Cor de fundo do ícone adaptativo (brand pink do CycleTrack) -->
-    <color name="ic_launcher_background">#E84D6E</color>
+    <!-- Cor de fundo do ícone adaptativo (fundo branco para destacar a logomarca) -->
+    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>

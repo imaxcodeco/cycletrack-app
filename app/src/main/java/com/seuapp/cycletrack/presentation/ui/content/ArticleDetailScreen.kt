@@ -1,5 +1,6 @@
 package com.seuapp.cycletrack.presentation.ui.content
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,6 +28,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.seuapp.cycletrack.presentation.ui.theme.CycleTrackColors
@@ -42,7 +46,7 @@ fun ArticleDetailScreen(articleId: String, onBack: () -> Unit = {}) {
 
     if (article == null) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Artigo nao encontrado", style = MaterialTheme.typography.bodyLarge)
+            Text("Artigo não encontrado", style = MaterialTheme.typography.bodyLarge)
         }
         return
     }
@@ -102,7 +106,7 @@ fun ArticleDetailScreen(articleId: String, onBack: () -> Unit = {}) {
                         Icon(
                             Icons.Filled.Verified,
                             contentDescription = null,
-                            tint = colors.tertiary,
+                            tint = colors.brandTeal,
                             modifier = Modifier.size(CycleTrackDimens.iconXs)
                         )
                     }
@@ -119,9 +123,20 @@ fun ArticleDetailScreen(articleId: String, onBack: () -> Unit = {}) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(160.dp)
-                    .background(colors.primaryContainer, RoundedCornerShape(CycleTrackDimens.radiusLg))
-            )
+                    .height(200.dp)
+                    .background(colors.primaryContainer, RoundedCornerShape(CycleTrackDimens.radiusLg)),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(id = com.seuapp.cycletrack.R.drawable.illustration_uterus_detail),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(170.dp)
+                        .padding(CycleTrackDimens.spacingSm),
+                    contentScale = ContentScale.Fit
+                )
+            }
         }
 
         items(article.body) { paragraph ->

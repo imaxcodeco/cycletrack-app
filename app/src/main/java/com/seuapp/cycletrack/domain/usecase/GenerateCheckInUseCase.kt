@@ -8,7 +8,7 @@ private val defaultMoodOptions = listOf(
     MoodOption("sobrecarregada", "Tenho muita coisa acontecendo"),
     MoodOption("raiva", "Estou com raiva"),
     MoodOption("triste", "Estou triste"),
-    MoodOption("prefiro_nao_dizer", "Prefiro nao responder")
+    MoodOption("prefiro_nao_dizer", "Prefiro não responder")
 )
 
 /**
@@ -22,47 +22,47 @@ object GenerateCheckInUseCase {
             dayOfCycle == 1 -> CheckInThread(
                 id = "checkin_novo_ciclo",
                 title = "Novo ciclo",
-                preview = "Um novo ciclo comecou. Como voce esta se sentindo hoje?",
+                preview = "Um novo ciclo começou. Como você está se sentindo hoje?",
                 timestamp = "Agora",
                 botLines = listOf(
-                    "Ola, aqui e sua Assistente de Saude!",
-                    "Um novo ciclo comecou.",
-                    "Como voce esta se sentindo hoje?"
+                    "Olá, aqui é sua Assistente de Saúde!",
+                    "Um novo ciclo começou.",
+                    "Como você está se sentindo hoje?"
                 ),
                 moodOptions = defaultMoodOptions
             )
             cyclePhase == CyclePhase.MENSTRUAL -> CheckInThread(
                 id = "checkin_menstruacao",
-                title = "Ajuda na menstruacao",
-                preview = "Mais um dia de menstruacao por aqui. Separei algumas dicas que podem ajudar.",
+                title = "Ajuda na menstruação",
+                preview = "Mais um dia de menstruação por aqui. Separei algumas dicas que podem ajudar.",
                 timestamp = "Hoje",
                 botLines = listOf(
-                    "Mais um dia de menstruacao por aqui.",
-                    "Colicas e cansaco sao comuns nesta fase.",
-                    "Como voce esta se sentindo hoje?"
+                    "Mais um dia de menstruação por aqui.",
+                    "Cólicas e cansaço são comuns nesta fase.",
+                    "Como você está se sentindo hoje?"
                 ),
                 moodOptions = defaultMoodOptions
             )
             cyclePhase == CyclePhase.OVULATION -> CheckInThread(
                 id = "checkin_ovulacao",
-                title = "Janela fertil",
-                preview = "Voce esta na sua janela fertil. Como esta se sentindo hoje?",
+                title = "Janela fértil",
+                preview = "Você está na sua janela fértil. Como está se sentindo hoje?",
                 timestamp = "Hoje",
                 botLines = listOf(
-                    "Voce esta na sua janela fertil.",
-                    "E normal sentir mais energia ou sensibilidade nesta fase.",
-                    "Como voce esta se sentindo hoje?"
+                    "Você está na sua janela fértil.",
+                    "É normal sentir mais energia ou sensibilidade nesta fase.",
+                    "Como você está se sentindo hoje?"
                 ),
                 moodOptions = defaultMoodOptions
             )
             else -> CheckInThread(
                 id = "checkin_diario",
-                title = "Check-in diario",
-                preview = "Como voce esta se sentindo hoje?",
+                title = "Check-in diário",
+                preview = "Como você está se sentindo hoje?",
                 timestamp = "Hoje",
                 botLines = listOf(
-                    "Oi! Passando para o seu check-in diario.",
-                    "Como voce esta se sentindo hoje?"
+                    "Oi! Passando para o seu check-in diário.",
+                    "Como você está se sentindo hoje?"
                 ),
                 moodOptions = defaultMoodOptions
             )

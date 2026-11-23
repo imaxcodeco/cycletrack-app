@@ -68,10 +68,10 @@ private data class BottomItem(
 )
 
 private val bottomItems = listOf(
-    BottomItem(Routes.HOME, "Inicio", Icons.Filled.Home),
-    BottomItem(Routes.CALENDAR, "Calendario", Icons.Filled.CalendarMonth),
+    BottomItem(Routes.HOME, "Início", Icons.Filled.Home),
+    BottomItem(Routes.CALENDAR, "Calendário", Icons.Filled.CalendarMonth),
     BottomItem(Routes.LOGGING, "Registrar", Icons.Filled.EditNote),
-    BottomItem(Routes.CONTENT, "Conteudo", Icons.Filled.MenuBook),
+    BottomItem(Routes.CONTENT, "Conteúdo", Icons.Filled.MenuBook),
     BottomItem(Routes.MESSAGES, "Mensagens", Icons.Filled.ChatBubble),
     BottomItem(Routes.INSIGHTS, "Insights", Icons.Filled.Insights),
     BottomItem(Routes.PROFILE, "Perfil", Icons.Filled.Person)

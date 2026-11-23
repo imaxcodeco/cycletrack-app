@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Brand Colors - Clean-room design system -->
-    <!-- Rosa suave moderno - nÃ£o copia Flo -->
-    <color name="primary_50">#FFF0F5</color>
-    <color name="primary_100">#FFE0EC</color>
-    <color name="primary_200">#FFC8D9</color>
-    <color name="primary_300">#FF9FB8</color>
-    <color name="primary_400">#FF6B8A</color>
-    <color name="primary_500">#E84D6E</color>  <!-- Primary -->
-    <color name="primary_600">#D03D5A</color>
-    <color name="primary_700">#B02E4A</color>
-    <color name="primary_800">#90253E</color>
-    <color name="primary_900">#701D33</color>
-    <color name="primary_950">#3D0D1A</color>
+    <!-- Primary Brand Colors - paleta derivada da logomarca CycleTrack -->
+    <color name="primary_50">#FDF6F9</color>
+    <color name="primary_100">#F9E3EC</color>
+    <color name="primary_200">#EFB3CD</color>
+    <color name="primary_300">#E37FAA</color>
+    <color name="primary_400">#D74685</color>
+    <color name="primary_500">#CC1262</color>  <!-- Primary (rosa/magenta da logo) -->
+    <color name="primary_600">#B81561</color>
+    <color name="primary_700">#8F1C60</color>  <!-- tom profundo da logo -->
+    <color name="primary_800">#601441</color>
+    <color name="primary_900">#3D0E29</color>
+    <color name="primary_950">#1E0815</color>
 
-    <!-- Secondary - Verde menta para fertilidade/saÃºde -->
-    <color name="secondary_50">#F0FDF4</color>
-    <color name="secondary_100">#DCFCE7</color>
-    <color name="secondary_200">#BBF7D0</color>
-    <color name="secondary_300">#86EFAC</color>
-    <color name="secondary_400">#4ADE80</color>
-    <color name="secondary_500">#22C55E</color>  <!-- Secondary -->
-    <color name="secondary_600">#16A34A</color>
-    <color name="secondary_700">#15803D</color>
-    <color name="secondary_800">#166534</color>
-    <color name="secondary_900">#14532D</color>
+    <!-- Secondary - Verde (checkmark/progresso dos assets de onboarding) -->
+    <color name="secondary_50">#F6FBF6</color>
+    <color name="secondary_100">#E4F3E5</color>
+    <color name="secondary_200">#BBE1BC</color>
+    <color name="secondary_300">#93CF95</color>
+    <color name="secondary_400">#6BBD6F</color>
+    <color name="secondary_500">#4BAF4F</color>  <!-- Secondary -->
+    <color name="secondary_600">#3F9143</color>
+    <color name="secondary_700">#347436</color>
+    <color name="secondary_800">#275429</color>
+    <color name="secondary_900">#1C381D</color>
 
     <!-- Tertiary - Azul suave para gravidez/calma -->
     <color name="tertiary_50">#EFF6FF</color>
@@ -38,13 +37,25 @@
     <color name="tertiary_800">#1E40AF</color>
     <color name="tertiary_900">#1E3A8A</color>
 
+    <!-- Accent Teal - cor secundaria da marca (ilustracoes de sinais do corpo, modo parceiro) -->
+    <color name="accent_teal_50">#F4FCFC</color>
+    <color name="accent_teal_100">#DDF6F5</color>
+    <color name="accent_teal_200">#AAE9E6</color>
+    <color name="accent_teal_300">#78DCD7</color>
+    <color name="accent_teal_400">#46CFC8</color>
+    <color name="accent_teal_500">#1EC4BC</color>
+    <color name="accent_teal_600">#1AA39C</color>
+    <color name="accent_teal_700">#17817C</color>
+    <color name="accent_teal_800">#135E5A</color>
+    <color name="accent_teal_900">#103E3C</color>
+
     <!-- Semantic Colors -->
     <!-- Success -->
-    <color name="success_50">#F0FDF4</color>
-    <color name="success_100">#DCFCE7</color>
-    <color name="success_500">#22C55E</color>
-    <color name="success_600">#16A34A</color>
-    <color name="success_700">#15803D</color>
+    <color name="success_50">#F6FBF6</color>
+    <color name="success_100">#E4F3E5</color>
+    <color name="success_500">#4BAF4F</color>
+    <color name="success_600">#3F9143</color>
+    <color name="success_700">#347436</color>
 
     <!-- Warning -->
     <color name="warning_50">#FFFAEB</color>
@@ -125,8 +136,8 @@
     <color name="navigation_bar_dark">#0A0A0A</color>
 
     <!-- Symptom Category Colors (para chips/badges) -->
-    <color name="category_physical_bg">#FFE0EC</color>
-    <color name="category_physical_text">#B02E4A</color>
+    <color name="category_physical_bg">#F9E3EC</color>
+    <color name="category_physical_text">#8F1C60</color>
     <color name="category_emotional_bg">#E0E7FF</color>
     <color name="category_emotional_text">#3730A3</color>
     <color name="category_discharge_bg">#F0FDF4</color>
@@ -137,15 +148,15 @@
     <color name="category_lifestyle_text">#B45309</color>
 
     <!-- Cycle Phase Colors -->
-    <color name="phase_menstrual">#E84D6E</color>
-    <color name="phase_follicular">#22C55E</color>
+    <color name="phase_menstrual">#CC1262</color>
+    <color name="phase_follicular">#4BAF4F</color>
     <color name="phase_ovulation">#F59E0B</color>
     <color name="phase_luteal">#3B82F6</color>
 
     <!-- Pregnancy Trimester Colors -->
     <color name="trimester_1">#3B82F6</color>
-    <color name="trimester_2">#22C55E</color>
-    <color name="trimester_3">#E84D6E</color>
+    <color name="trimester_2">#4BAF4F</color>
+    <color name="trimester_3">#CC1262</color>
 
     <!-- Legacy support (para compatibilidade) -->
     <color name="colorPrimary">@color/primary_500</color>

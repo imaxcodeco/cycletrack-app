@@ -11,15 +11,15 @@
                 android:angle="270"
                 android:startColor="@color/primary_500"
                 android:centerColor="@color/primary_600"
-                android:endColor="@color/tertiary_500"
+                android:endColor="@color/primary_700"
                 android:type="linear" />
         </shape>
     </item>
 
     <item
-        android:drawable="@mipmap/ic_launcher"
+        android:drawable="@drawable/logo_cycletrack"
         android:gravity="center"
-        android:width="108dp"
-        android:height="108dp" />
+        android:width="140dp"
+        android:height="140dp" />
 
 </layer-list>

@@ -101,14 +101,14 @@ fun InsightsScreen(
                 MetricCard(
                     modifier = Modifier.weight(1f),
                     value = "$averageCycleLength",
-                    label = "Media do ciclo",
+                    label = "Média do ciclo",
                     suffix = "dias",
                     tint = colors.primary
                 )
                 MetricCard(
                     modifier = Modifier.weight(1f),
                     value = "$averagePeriodLength",
-                    label = "Media do periodo",
+                    label = "Média do período",
                     suffix = "dias",
                     tint = colors.phaseMenstrual
                 )
@@ -178,7 +178,7 @@ fun InsightsScreen(
             ) {
                 Column(Modifier.padding(CycleTrackDimens.spacingMd)) {
                     Text(
-                        text = "Duracao dos ultimos ciclos",
+                        text = "Duração dos últimos ciclos",
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -263,7 +263,7 @@ fun InsightsScreen(
 
         item {
             Text(
-                text = "As previsoes sao estimativas baseadas nos seus registros e podem variar.",
+                text = "As previsões são estimativas baseadas nos seus registros e podem variar.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

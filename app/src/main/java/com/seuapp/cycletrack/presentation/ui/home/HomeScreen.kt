@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material.icons.filled.EmojiEvents
@@ -61,9 +62,18 @@ private fun LocalDate.formatMonthDay(): String =
 private fun LocalDate.formatLong(): String =
     format(DateTimeFormatter.ofPattern("d 'de' MMMM", ptBr))
 
+private fun cyclePhaseLabel(phase: com.seuapp.cycletrack.domain.usecase.CyclePhase): String =
+    when (phase) {
+        com.seuapp.cycletrack.domain.usecase.CyclePhase.MENSTRUAL -> "Menstrual"
+        com.seuapp.cycletrack.domain.usecase.CyclePhase.FOLLICULAR -> "Folicular"
+        com.seuapp.cycletrack.domain.usecase.CyclePhase.OVULATION -> "Ovulação"
+        com.seuapp.cycletrack.domain.usecase.CyclePhase.LUTEAL -> "Lútea"
+        com.seuapp.cycletrack.domain.usecase.CyclePhase.UNKNOWN -> "—"
+    }
+
 /**
- * Tela inicial: mostra o dia do ciclo, a fase atual, a previsao do proximo
- * periodo e atalhos para os principais dados do ciclo.
+ * Tela inicial: mostra o dia do ciclo, a fase atual, a previsão do próximo
+ * período e atalhos para os principais dados do ciclo.
  */
 @Composable
 fun HomeScreen(
@@ -102,7 +112,7 @@ fun HomeScreen(
         item {
             Column {
                 Text(
-                    text = "Ola!",
+                    text = "Olá!",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -124,9 +134,15 @@ fun HomeScreen(
         }
 
         item {
-            Card(
-                shape = RoundedCornerShape(CycleTrackDimens.radiusLg),
-                colors = CardDefaults.cardColors(containerColor = colors.primaryContainer)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(CycleTrackDimens.radiusLg))
+                    .background(
+                        androidx.compose.ui.graphics.Brush.horizontalGradient(
+                            listOf(colors.primaryContainer, colors.primary.copy(alpha = 0.18f))
+                        )
+                    )
             ) {
                 Row(
                     modifier = Modifier
@@ -157,13 +173,13 @@ fun HomeScreen(
                         )
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            text = cyclePhase.name.replace("_", " ").capitalize(),
+                            text = cyclePhaseLabel(cyclePhase),
                             style = MaterialTheme.typography.titleSmall,
                             color = phaseColor
                         )
                         Spacer(Modifier.height(CycleTrackDimens.spacingXs))
                         Text(
-                            text = "Proximo periodo em ${nextPeriodDate?.formatMonthDay() ?: "—"}",
+                            text = "Próximo período em ${nextPeriodDate?.formatMonthDay() ?: "—"}",
                             style = MaterialTheme.typography.bodySmall,
                             color = colors.onPrimaryContainer
                         )
@@ -181,14 +197,14 @@ fun HomeScreen(
                 InfoTile(
                     modifier = Modifier.weight(1f),
                     icon = Icons.Filled.EmojiEvents,
-                    title = "Ovulacao",
+                    title = "Ovulação",
                     value = ovulationDate?.formatMonthDay() ?: "—",
                     tint = colors.tertiary
                 )
                 InfoTile(
                     modifier = Modifier.weight(1f),
                     icon = Icons.Filled.Spa,
-                    title = "Janela fertile",
+                    title = "Janela fértil",
                     value = fertileWindow?.let { fw ->
                         "${fw.start.formatMonthDay()} - ${fw.end.formatMonthDay()}"
                     } ?: "—",
@@ -199,7 +215,7 @@ fun HomeScreen(
 
         item {
             Text(
-                text = "Previsoes",
+                text = "Previsões",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
@@ -225,7 +241,7 @@ fun HomeScreen(
                     Spacer(Modifier.width(CycleTrackDimens.spacingSm))
                     Column(Modifier.weight(1f)) {
                         Text(
-                            text = "Ovulacao",
+                            text = "Ovulação",
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Text(
@@ -271,7 +287,7 @@ fun HomeScreen(
                                 color = colors.onSecondaryContainer
                             )
                             Text(
-                                text = "Continue registrando para previsoes mais precisas.",
+                                text = "Continue registrando para previsões mais precisas.",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = colors.onSecondaryContainer
                             )

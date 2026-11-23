@@ -41,7 +41,7 @@ fun ContentScreen(onArticleClick: (String) -> Unit = {}) {
     val colors = CycleTrackColors()
     val palettes = listOf(
         CardPalette(colors.primaryContainer, colors.onPrimaryContainer),
-        CardPalette(colors.secondaryContainer, colors.onSecondaryContainer),
+        CardPalette(colors.brandTealContainer, colors.onBrandTealContainer),
         CardPalette(colors.tertiaryContainer, colors.onTertiaryContainer),
         CardPalette(colors.categoryEmotionalContainer, colors.categoryEmotional)
     )
@@ -55,7 +55,7 @@ fun ContentScreen(onArticleClick: (String) -> Unit = {}) {
     ) {
         item {
             Text(
-                text = "Conteudo",
+                text = "Conteúdo",
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(horizontal = CycleTrackDimens.spacingMd)

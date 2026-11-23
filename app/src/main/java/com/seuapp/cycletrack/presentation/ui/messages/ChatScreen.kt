@@ -46,9 +46,9 @@ import com.seuapp.cycletrack.presentation.viewmodel.HomeViewModel
 private fun moodReply(moodKey: String): String = when (moodKey) {
     "bem" -> "Que bom ouvir isso! Continue assim."
     "sobrecarregada" -> "Entendo. Respire fundo — um passo de cada vez."
-    "raiva" -> "Oscilacoes de humor sao comuns nesta fase do ciclo. Cuide-se."
+    "raiva" -> "Oscilações de humor são comuns nesta fase do ciclo. Cuide-se."
     "triste" -> "Sinto muito que esteja assim. Estou aqui se precisar de dicas de bem-estar."
-    else -> "Obrigada por compartilhar como voce esta."
+    else -> "Obrigada por compartilhar como você está."
 }
 
 /**
