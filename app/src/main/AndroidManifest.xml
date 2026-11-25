@@ -25,36 +25,8 @@
     <!-- Biometria -->
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
-    <!-- Health Connect -->
-    <uses-permission android:name="android.permission.health.READ_MENSTRUATION" />
-    <uses-permission android:name="android.permission.health.WRITE_MENSTRUATION" />
-    <uses-permission android:name="android.permission.health.READ_WEIGHT" />
-    <uses-permission android:name="android.permission.health.WRITE_WEIGHT" />
-    <uses-permission android:name="android.permission.health.READ_TEMPERATURE" />
-    <uses-permission android:name="android.permission.health.WRITE_TEMPERATURE" />
-    <uses-permission android:name="android.permission.health.READ_HEART_RATE" />
-    <uses-permission android:name="android.permission.health.WRITE_HEART_RATE" />
-    <uses-permission android:name="android.permission.health.READ_BLOOD_PRESSURE" />
-    <uses-permission android:name="android.permission.health.WRITE_BLOOD_PRESSURE" />
-    <uses-permission android:name="android.permission.health.READ_OXYGEN_SATURATION" />
-    <uses-permission android:name="android.permission.health.WRITE_OXYGEN_SATURATION" />
-    <uses-permission android:name="android.permission.health.READ_STEPS" />
-    <uses-permission android:name="android.permission.health.WRITE_STEPS" />
-    <uses-permission android:name="android.permission.health.READ_SLEEP" />
-    <uses-permission android:name="android.permission.health.WRITE_SLEEP" />
-    <uses-permission android:name="android.permission.health.READ_NUTRITION" />
-    <uses-permission android:name="android.permission.health.WRITE_NUTRITION" />
-
-    <!-- App Links / deep links -->
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
-
     <!-- ============ Features ============ -->
     <uses-feature android:name="android.hardware.fingerprint" android:required="false" />
-    <uses-feature android:name="android.hardware.sensor.stepcounter" android:required="false" />
-
-    <queries>
-        <package android:name="com.google.android.apps.healthdata" />
-    </queries>
 
     <application
         android:name=".CycleTrackApplication"
@@ -115,26 +87,6 @@
                 android:value="androidx.startup"
                 tools:node="remove" />
         </provider>
-
-        <!-- ============ Health Connect ============ -->
-        <activity-alias
-            android:name="ViewPermissionUsageActivity"
-            android:exported="true"
-            android:targetActivity=".presentation.MainActivity"
-            android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
-                <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
-            </intent-filter>
-        </activity-alias>
-
-        <!-- ============ Firebase Crashlytics ============ -->
-        <meta-data
-            android:name="com.google.firebase.crashlytics.init"
-            android:value="true" />
-        <meta-data
-            android:name="com.google.firebase.crashlytics.collection.enabled"
-            android:value="true" />
 
         <!-- ============ WorkManager: notificações de sync ============ -->
         <provider

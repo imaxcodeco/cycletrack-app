@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Favorite
@@ -30,7 +31,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -39,13 +39,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.seuapp.cycletrack.presentation.viewmodel.AuthViewModel
 import com.seuapp.cycletrack.presentation.ui.onboarding.GOAL_BODY
 import com.seuapp.cycletrack.presentation.ui.onboarding.GOAL_EXPECTING
 import com.seuapp.cycletrack.presentation.ui.onboarding.GOAL_PERIOD
@@ -83,19 +86,20 @@ fun ProfileScreen(
     onNavigateToCycleSettings: () -> Unit = {},
     onNavigateToReminders: () -> Unit = {},
     onNavigateToPartner: () -> Unit = {},
-    viewModel: UserProfileViewModel = hiltViewModel()
+    onSignOut: () -> Unit = {},
+    viewModel: UserProfileViewModel = hiltViewModel(),
+    authViewModel: AuthViewModel = hiltViewModel()
 ) {
     val colors = CycleTrackColors()
     val profile by viewModel.profile.collectAsStateWithLifecycle()
-    var healthSyncEnabled by remember { mutableStateOf(false) }
     var showGoalSheet by remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         viewModel.loadProfile(DEFAULT_USER_ID)
     }
 
     val displayName = profile?.displayName?.ifBlank { "Ana Martins" } ?: "Ana Martins"
-    val subscriptionPlan = "Plano Premium"
 
     LazyColumn(
         modifier = Modifier
@@ -127,39 +131,6 @@ fun ProfileScreen(
                         text = displayName,
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.SemiBold
-                    )
-                    Text(
-                        text = subscriptionPlan,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = colors.primary
-                    )
-                }
-            }
-        }
-
-        item {
-            Card(
-                shape = RoundedCornerShape(CycleTrackDimens.radiusLg),
-                colors = CardDefaults.cardColors(containerColor = colors.primaryContainer)
-            ) {
-                Column(Modifier.padding(CycleTrackDimens.spacingMd)) {
-                    Text(
-                        text = "CycleTrack Premium",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold,
-                        color = colors.onPrimaryContainer
-                    )
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        text = "Previsões refinadas, exportação de dados e compartilhamento com o parceiro.",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = colors.onPrimaryContainer
-                    )
-                    Spacer(Modifier.height(CycleTrackDimens.spacingSm))
-                    Text(
-                        text = "Renovar assinatura",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = colors.primary
                     )
                 }
             }
@@ -207,14 +178,6 @@ fun ProfileScreen(
                         subtitle = "Categorias e horários de período, ovulação e dicas",
                         onClick = onNavigateToReminders
                     )
-                    Divider()
-                    ToggleRow(
-                        icon = Icons.Filled.Favorite,
-                        title = "Sincronizar com Health Connect",
-                        subtitle = "Peso, temperatura e atividade",
-                        checked = healthSyncEnabled,
-                        onCheckedChange = { healthSyncEnabled = it }
-                    )
                 }
             }
         }
@@ -236,7 +199,7 @@ fun ProfileScreen(
                     ActionRow(
                         icon = Icons.Filled.Settings,
                         title = "Ajustes do ciclo",
-                        subtitle = "Duração média e do período",
+                        subtitle = "Duração média do ciclo e da menstruação",
                         onClick = onNavigateToCycleSettings
                     )
                     Divider()
@@ -250,6 +213,18 @@ fun ProfileScreen(
                     ActionRow(Icons.Filled.Download, "Exportar meus dados", "CSV ou PDF")
                     Divider()
                     ActionRow(Icons.Filled.Lock, "Privacidade e segurança", "Senha e biometria")
+                    Divider()
+                    ActionRow(
+                        icon = Icons.AutoMirrored.Filled.Logout,
+                        title = "Sair da conta",
+                        subtitle = "Encerrar sessão neste aparelho",
+                        onClick = {
+                            coroutineScope.launch {
+                                authViewModel.signOut()
+                                onSignOut()
+                            }
+                        }
+                    )
                 }
             }
         }
@@ -288,34 +263,6 @@ private fun Divider() {
             .height(1.dp)
             .background(MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
     )
-}
-
-@Composable
-private fun ToggleRow(
-    icon: ImageVector,
-    title: String,
-    subtitle: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(CycleTrackDimens.spacingMd)
-    ) {
-        Icon(icon, contentDescription = null, tint = CycleTrackColors().primary)
-        Spacer(Modifier.width(CycleTrackDimens.spacingSm))
-        Column(Modifier.weight(1f)) {
-            Text(text = title, style = MaterialTheme.typography.bodyLarge)
-            Text(
-                text = subtitle,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-        Switch(checked = checked, onCheckedChange = onCheckedChange)
-    }
 }
 
 @Composable

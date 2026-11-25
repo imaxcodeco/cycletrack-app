@@ -66,9 +66,20 @@ private fun cyclePhaseLabel(phase: com.seuapp.cycletrack.domain.usecase.CyclePha
     when (phase) {
         com.seuapp.cycletrack.domain.usecase.CyclePhase.MENSTRUAL -> "Menstrual"
         com.seuapp.cycletrack.domain.usecase.CyclePhase.FOLLICULAR -> "Folicular"
-        com.seuapp.cycletrack.domain.usecase.CyclePhase.OVULATION -> "Ovulação"
+        com.seuapp.cycletrack.domain.usecase.CyclePhase.OVULATION -> "Ovulatória"
         com.seuapp.cycletrack.domain.usecase.CyclePhase.LUTEAL -> "Lútea"
         com.seuapp.cycletrack.domain.usecase.CyclePhase.UNKNOWN -> "—"
+    }
+
+/**
+ * Confianca da previsao de ovulacao com base no numero real de ciclos registrados,
+ * em vez de um percentual fixo que nao reflete nenhum calculo de fato.
+ */
+private fun ovulationConfidenceLabel(cycleCount: Int): String =
+    when {
+        cycleCount == 0 -> "Sem dados"
+        cycleCount < 3 -> "Estimativa inicial"
+        else -> "Estimativa"
     }
 
 /**
@@ -251,7 +262,7 @@ fun HomeScreen(
                         )
                     }
                     Text(
-                        text = "85%",
+                        text = ovulationConfidenceLabel(cycleCount),
                         style = MaterialTheme.typography.labelLarge,
                         color = colors.primary
                     )
@@ -282,7 +293,7 @@ fun HomeScreen(
                         Spacer(Modifier.width(CycleTrackDimens.spacingSm))
                         Column {
                             Text(
-                                text = "Dias registrados: ${currentCycle?.periodLength ?: 5}",
+                                text = "Ciclos registrados: $cycleCount",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = colors.onSecondaryContainer
                             )

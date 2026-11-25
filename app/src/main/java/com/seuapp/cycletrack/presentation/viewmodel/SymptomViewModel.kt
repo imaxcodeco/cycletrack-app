@@ -74,6 +74,38 @@ class SymptomViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Salva uma medida numerica (peso ou temperatura) para a data informada.
+     * Usa um id deterministico por categoria+data para que editar sobrescreva
+     * o valor anterior em vez de duplicar. Se [value] for nulo, remove o
+     * registro (campo limpo pela usuaria).
+     */
+    fun saveMeasurement(date: LocalDate, category: String, value: Double?) {
+        viewModelScope.launch {
+            try {
+                val id = "${DEFAULT_USER_ID}_${date.toEpochDay()}_measurement_$category"
+                if (value == null) {
+                    symptomRepository.deleteSymptom(id)
+                    _symptoms.value = _symptoms.value.filterNot { it.id == id }
+                    return@launch
+                }
+                val symptom = Symptom(
+                    id = id,
+                    userId = DEFAULT_USER_ID,
+                    date = date,
+                    name = category,
+                    category = category,
+                    value = value
+                )
+                symptomRepository.upsertSymptom(symptom)
+                _symptoms.value = _symptoms.value.filterNot { it.id == id } + symptom
+            } catch (e: Exception) {
+                _error.value = e.message
+                Timber.e(e, "Error saving measurement")
+            }
+        }
+    }
+
     fun addSymptom(symptom: Symptom) {
         viewModelScope.launch {
             try {

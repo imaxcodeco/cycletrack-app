@@ -110,7 +110,7 @@ private fun PartnerLandingContent(onBack: () -> Unit, onGenerateInvite: () -> Un
                 )
                 Spacer(Modifier.height(CycleTrackDimens.spacingMd))
                 listOf(
-                    "Mostre dados do seu ciclo ao seu parceiro.",
+                    "Seus dados de ciclo ficam visíveis para seu parceiro.",
                     "Vocês dois recebem orientações sobre os melhores dias.",
                     "Ele recebe informações sobre fertilidade e como pode ajudar."
                 ).forEach { line ->

@@ -61,7 +61,7 @@ private val categories = listOf(
     LogCategory(
         title = "Testes de ovulação",
         subtitle = "Registre testes para saber seus dias férteis",
-        options = listOf("Não fiz testes", "Teste: positivo", "Teste: negativo", "Ovulação: meu método")
+        options = listOf("Não fiz testes", "Teste: positivo", "Teste: negativo", "Confirmado por outro método")
     ),
     LogCategory(
         title = "Sexo e libido",
@@ -132,6 +132,11 @@ fun LoggingScreen(viewModel: SymptomViewModel = hiltViewModel()) {
 
     LaunchedEffect(selectedDate) {
         viewModel.loadSymptoms(selectedDate)
+    }
+
+    LaunchedEffect(symptoms) {
+        weightText = symptoms.find { it.category == "Peso" }?.value?.let(::formatMeasurement) ?: ""
+        temperatureText = symptoms.find { it.category == "Temperatura" }?.value?.let(::formatMeasurement) ?: ""
     }
 
     fun isSelected(category: String, option: String): Boolean =
@@ -223,7 +228,10 @@ fun LoggingScreen(viewModel: SymptomViewModel = hiltViewModel()) {
                 Row(horizontalArrangement = Arrangement.spacedBy(CycleTrackDimens.spacingSm)) {
                     OutlinedTextField(
                         value = weightText,
-                        onValueChange = { weightText = it },
+                        onValueChange = { text ->
+                            weightText = text
+                            viewModel.saveMeasurement(selectedDate, "Peso", text.toMeasurementOrNull())
+                        },
                         label = { Text("Peso (kg)") },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                         singleLine = true,
@@ -231,7 +239,10 @@ fun LoggingScreen(viewModel: SymptomViewModel = hiltViewModel()) {
                     )
                     OutlinedTextField(
                         value = temperatureText,
-                        onValueChange = { temperatureText = it },
+                        onValueChange = { text ->
+                            temperatureText = text
+                            viewModel.saveMeasurement(selectedDate, "Temperatura", text.toMeasurementOrNull())
+                        },
                         label = { Text("Temp. (°C)") },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                         singleLine = true,
@@ -281,6 +292,12 @@ private fun SectionCard(title: String, subtitle: String? = null, content: @Compo
         }
     }
 }
+
+private fun String.toMeasurementOrNull(): Double? =
+    trim().replace(",", ".").toDoubleOrNull()
+
+private fun formatMeasurement(value: Double): String =
+    if (value == value.toLong().toDouble()) value.toLong().toString() else value.toString()
 
 @Composable
 private fun LogChip(text: String, selected: Boolean, onClick: () -> Unit) {

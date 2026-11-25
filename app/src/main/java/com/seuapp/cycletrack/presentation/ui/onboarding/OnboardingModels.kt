@@ -158,7 +158,7 @@ fun trackSteps(goal: String): List<OnboardingStep> = when (goal) {
         ),
         OnboardingStep.Illustration(
             image = R.drawable.onboarding_pregnancy,
-            title = "Você começa bem essa jornada",
+            title = "Você está no caminho certo",
             subtitle = "Vamos te ajudar a identificar os padrões de ovulação e o melhor momento para tentar."
         )
     )
@@ -215,7 +215,7 @@ fun closingSteps(): List<OnboardingStep> = listOf(
     OnboardingStep.PercentLoading,
     OnboardingStep.Illustration(
         image = R.drawable.icon_progress_complete,
-        title = "Tudo pronto para começar",
+        title = "Seu perfil está pronto",
         subtitle = "Com o CycleTrack você tem o controle da sua saúde reprodutiva.",
         bullets = listOf(
             "Torne-se especialista na sua própria fertilidade",

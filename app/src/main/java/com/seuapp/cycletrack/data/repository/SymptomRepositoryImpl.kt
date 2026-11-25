@@ -49,6 +49,7 @@ class SymptomRepositoryImpl @Inject constructor(
         this.name = this@toRealm.name
         this.severity = this@toRealm.severity
         this.notes = this@toRealm.notes
+        this.value = this@toRealm.value
         this.createdAt = this@toRealm.createdAt
     }
 
@@ -60,6 +61,7 @@ class SymptomRepositoryImpl @Inject constructor(
         category = this.category,
         severity = this.severity,
         notes = this.notes,
+        value = this.value,
         createdAt = this.createdAt
     )
 }

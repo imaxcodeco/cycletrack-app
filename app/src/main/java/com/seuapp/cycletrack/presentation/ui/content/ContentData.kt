@@ -177,7 +177,7 @@ val contentSections: List<ContentSection> = listOf(
                 body = listOf(
                     "A maioria dos anticoncepcionais hormonais impede a ovulação, tornando o 'ciclo' resultante um sangramento de privação hormonal, não uma menstruação verdadeira.",
                     "Por isso, os sintomas de TPM costumam ser mais leves e previsíveis em quem usa métodos hormonais combinados.",
-                    "Ao parar de usar, pode levar algumas semanas ou meses até o ciclo natural se reestabelecer — isso varia de pessoa para pessoa."
+                    "Ao parar de usar, pode levar algumas semanas ou meses até o ciclo natural se restabelecer — isso varia de pessoa para pessoa."
                 ),
                 reviewerName = "Dr. Felipe Andrade",
                 reviewerCredential = "Endocrinologista, especialista em saúde hormonal"

@@ -315,7 +315,7 @@ private fun describeDay(date: LocalDate, cycleDays: Map<LocalDate, DayKind>): St
     DayKind.FERTILE -> "Dentro da janela fértil"
     DayKind.OVULATION -> "Ovulação estimada"
     DayKind.PREDICTED -> "Período previsto"
-    else -> "Sem registro especial"
+    else -> "Nenhum evento especial neste dia"
 }
 
 private fun buildCycleDays(

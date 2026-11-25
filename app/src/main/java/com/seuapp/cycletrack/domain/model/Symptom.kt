@@ -10,5 +10,6 @@ data class Symptom(
     val category: String = "",
     val severity: Int = 2,
     val notes: String = "",
+    val value: Double? = null,
     val createdAt: Long = System.currentTimeMillis()
 )

@@ -22,8 +22,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.seuapp.cycletrack"
-        // minSdk 26 (Android 8.0) - exigido pelo Health Connect
+        applicationId = "com.lamax.cycletrack"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -32,6 +31,16 @@ android {
         multiDexEnabled = true
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            val keystorePath = System.getenv("KEYSTORE_PATH") ?: "../keystore/release.keystore"
+            storeFile = file(keystorePath)
+            storePassword = System.getenv("KEYSTORE_PASSWORD")
+            keyAlias = System.getenv("KEY_ALIAS")
+            keyPassword = System.getenv("KEY_PASSWORD")
         }
     }
 
@@ -91,16 +100,6 @@ android {
         compose = true
         dataBinding = true
         viewBinding = true
-    }
-
-    signingConfigs {
-        create("release") {
-            val keystorePath = System.getenv("KEYSTORE_PATH") ?: "../keystore/release.keystore"
-            storeFile = file(keystorePath)
-            storePassword = System.getenv("KEYSTORE_PASSWORD")
-            keyAlias = System.getenv("KEY_ALIAS")
-            keyPassword = System.getenv("KEY_PASSWORD")
-        }
     }
 }
 
@@ -230,38 +229,17 @@ dependencies {
     implementation("androidx.work:work-gcm:$work_version")
     androidTestImplementation("androidx.work:work-testing:$work_version")
 
-    // ============ Play Billing (Subscriptions) ============
-    val billing_version = "7.0.0"
-    implementation("com.android.billingclient:billing:$billing_version")
-    implementation("com.android.billingclient:billing-ktx:$billing_version")
-
-    // ============ Health Connect ============
-    // 1.1.0-beta01 = ultima versao compativel com compileSdk 35 / AGP 8.4
-    val health_connect_version = "1.1.0-beta01"
-    implementation("androidx.health.connect:connect-client:$health_connect_version")
-
     // ============ Firebase ============
+    // Apenas Auth: o app e local-first (Realm) e nao usa Analytics/Messaging/
+    // Firestore/Remote Config nesta versao, para nao coletar telemetria que
+    // contradiga a promessa de privacidade feita no onboarding.
     val firebase_bom_version = "33.1.0"
     implementation(platform("com.google.firebase:firebase-bom:$firebase_bom_version"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-messaging-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
-    implementation("com.google.firebase:firebase-config-ktx")
-    implementation("com.google.firebase:firebase-installations-ktx")
-    // Crashlytics e Perf removidos do recorte minimo: exigem o plugin Gradle
-    // correspondente (build ID) e o google-services.json real do projeto Firebase.
 
-    // ============ Google Play Services ============
-    implementation("com.google.android.gms:play-services-auth:21.0.0")
-    implementation("com.google.android.gms:play-services-location:21.2.0")
-    implementation("com.google.android.gms:play-services-ads-identifier:18.0.1")
-
-    // ============ Biometric / Credential Manager ============
+    // ============ Biometric ============
     val biometric_version = "1.2.0-alpha04"
     implementation("androidx.biometric:biometric-ktx:$biometric_version")
-    implementation("androidx.credentials:credentials:1.3.0-alpha02")
-    implementation("androidx.credentials:credentials-play-services-auth:1.3.0-alpha02")
 
     // ============ Sentry (Error Tracking) - DISABLED in DEBUG ============
     // val sentry_version = "7.11.0"

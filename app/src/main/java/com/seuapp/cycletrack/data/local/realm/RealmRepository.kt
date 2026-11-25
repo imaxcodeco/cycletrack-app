@@ -6,7 +6,6 @@ import com.seuapp.cycletrack.data.local.realm.dao.UserProfileDao
 import com.seuapp.cycletrack.data.local.realm.dao.PredictionDao
 import com.seuapp.cycletrack.data.local.realm.dao.PregnancyDao
 import com.seuapp.cycletrack.data.local.realm.dao.PartnerDao
-import com.seuapp.cycletrack.data.local.realm.dao.SubscriptionDao
 import com.seuapp.cycletrack.data.local.realm.dao.ContentDao
 import com.seuapp.cycletrack.data.local.realm.dao.HealthDataPointDao
 import com.seuapp.cycletrack.data.local.realm.dao.NotificationDao
@@ -23,7 +22,6 @@ class RealmRepository private constructor() {
     val predictions = PredictionDao()
     val pregnancies = PregnancyDao()
     val partners = PartnerDao()
-    val subscriptions = SubscriptionDao()
     val content = ContentDao()
     val healthDataPoints = HealthDataPointDao()
     val notifications = NotificationDao()

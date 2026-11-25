@@ -1,5 +1,7 @@
 package com.seuapp.cycletrack.presentation.navigation
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -9,6 +11,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Insights
 import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -19,8 +22,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
@@ -29,6 +36,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.seuapp.cycletrack.data.local.prefs.OnboardingPrefs
+import com.seuapp.cycletrack.domain.model.AuthState
+import com.seuapp.cycletrack.presentation.ui.auth.AuthScreen
 import com.seuapp.cycletrack.presentation.ui.calendar.CalendarScreen
 import com.seuapp.cycletrack.presentation.ui.content.ArticleDetailScreen
 import com.seuapp.cycletrack.presentation.ui.content.ContentScreen
@@ -42,9 +52,11 @@ import com.seuapp.cycletrack.presentation.ui.partner.PartnerScreen
 import com.seuapp.cycletrack.presentation.ui.profile.ProfileScreen
 import com.seuapp.cycletrack.presentation.ui.settings.CycleSettingsScreen
 import com.seuapp.cycletrack.presentation.ui.settings.RemindersScreen
+import com.seuapp.cycletrack.presentation.viewmodel.AuthViewModel
 
 /** Rotas do app. */
 object Routes {
+    const val AUTH = "auth"
     const val ONBOARDING = "onboarding"
     const val HOME = "home"
     const val CALENDAR = "calendar"
@@ -79,8 +91,20 @@ private val bottomItems = listOf(
 
 @Composable
 fun CycleTrackApp() {
+    val context = LocalContext.current
+    val authViewModel: AuthViewModel = hiltViewModel()
+    val authState by authViewModel.authState.collectAsStateWithLifecycle()
+    val isCheckingSession by authViewModel.isCheckingSession.collectAsStateWithLifecycle()
+
+    if (isCheckingSession) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+        return
+    }
+
     val navController = rememberNavController()
-    var onboardingDone by remember { mutableStateOf(false) }
+    var onboardingDone by remember { mutableStateOf(OnboardingPrefs.isComplete(context)) }
 
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = backStackEntry?.destination
@@ -115,12 +139,28 @@ fun CycleTrackApp() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = if (onboardingDone) Routes.HOME else Routes.ONBOARDING,
+            startDestination = when {
+                authState !is AuthState.Authenticated -> Routes.AUTH
+                !onboardingDone -> Routes.ONBOARDING
+                else -> Routes.HOME
+            },
             modifier = Modifier.padding(innerPadding)
         ) {
+            composable(Routes.AUTH) {
+                AuthScreen(
+                    viewModel = authViewModel,
+                    onAuthSuccess = {
+                        val next = if (onboardingDone) Routes.HOME else Routes.ONBOARDING
+                        navController.navigate(next) {
+                            popUpTo(Routes.AUTH) { inclusive = true }
+                        }
+                    }
+                )
+            }
             composable(Routes.ONBOARDING) {
                 OnboardingScreen(
                     onFinish = {
+                        OnboardingPrefs.setComplete(context)
                         onboardingDone = true
                         navController.navigate(Routes.HOME) {
                             popUpTo(Routes.ONBOARDING) { inclusive = true }
@@ -148,7 +188,13 @@ fun CycleTrackApp() {
                 ProfileScreen(
                     onNavigateToCycleSettings = { navController.navigate(Routes.CYCLE_SETTINGS) },
                     onNavigateToReminders = { navController.navigate(Routes.REMINDERS) },
-                    onNavigateToPartner = { navController.navigate(Routes.PARTNER) }
+                    onNavigateToPartner = { navController.navigate(Routes.PARTNER) },
+                    onSignOut = {
+                        navController.navigate(Routes.AUTH) {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    },
+                    authViewModel = authViewModel
                 )
             }
             composable(Routes.CYCLE_SETTINGS) {

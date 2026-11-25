@@ -41,6 +41,7 @@ fun SignUpScreen(
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
+    var localError by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = Modifier
@@ -106,10 +107,10 @@ fun SignUpScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         )
 
-        if (errorMessage != null) {
+        if (localError != null || errorMessage != null) {
             Spacer(Modifier.height(CycleTrackDimens.spacingMd))
             Text(
-                text = errorMessage,
+                text = localError ?: errorMessage.orEmpty(),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
             )
@@ -126,7 +127,12 @@ fun SignUpScreen(
             } else {
                 Button(
                     onClick = {
-                        if (password == confirmPassword && password.length >= 6) {
+                        localError = when {
+                            password.length < 6 -> "A senha precisa ter pelo menos 6 caracteres."
+                            password != confirmPassword -> "As senhas não coincidem."
+                            else -> null
+                        }
+                        if (localError == null) {
                             onSignUpClick(email, password, name)
                         }
                     },

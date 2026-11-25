@@ -71,7 +71,16 @@ fun InsightsScreen(
     val averagePeriodLength = currentCycle?.periodLength ?: 5
     val loggedDays = symptoms.distinctBy { it.date }.size
     val totalSymptoms = symptoms.size
-    val cycleRegularity = "Regular"
+    val cycleRegularity = remember(realCycles) {
+        if (realCycles.size < 3) {
+            "Dados insuficientes"
+        } else {
+            val lengths = realCycles.map { it.cycleLength }
+            val average = lengths.average()
+            val maxDeviation = lengths.maxOf { kotlin.math.abs(it - average) }
+            if (maxDeviation <= 4) "Regular" else "Irregular"
+        }
+    }
 
     LazyColumn(
         modifier = Modifier
@@ -162,7 +171,7 @@ fun InsightsScreen(
                             color = colors.onPrimaryContainer
                         )
                         Text(
-                            text = "Classificacao da variacao dos seus ciclos",
+                            text = "Classificação da variação dos seus ciclos",
                             style = MaterialTheme.typography.bodySmall,
                             color = colors.onPrimaryContainer
                         )

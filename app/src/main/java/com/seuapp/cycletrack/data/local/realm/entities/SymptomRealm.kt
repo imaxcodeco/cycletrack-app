@@ -25,6 +25,8 @@ open class SymptomRealm : RealmObject() {
 
     var notes: String = ""
 
+    var value: Double? = null
+
     var createdAt: Long = System.currentTimeMillis()
 
     var deletedAt: Long = 0L

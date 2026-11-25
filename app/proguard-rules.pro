@@ -71,14 +71,6 @@
 -keep class androidx.work.** { *; }
 -keep class com.seuapp.cycletrack.work.** { *; }
 
-# ---- Play Billing ----
--keep class com.android.billingclient.** { *; }
--keep class com.seuapp.cycletrack.billing.** { *; }
-
-# ---- Health Connect ----
--keep class androidx.health.connect.** { *; }
--keep class com.seuapp.cycletrack.healthconnect.** { *; }
-
 # ---- Firebase ----
 -keep class com.google.firebase.** { *; }
 -dontwarn com.google.firebase.**
@@ -86,20 +78,12 @@
 # ---- Google Play Services ----
 -keep class com.google.android.gms.** { *; }
 
-# ---- Biometric / Credentials ----
+# ---- Biometric ----
 -keep class androidx.biometric.** { *; }
--keep class androidx.credentials.** { *; }
-
-# ---- Sentry ----
--keep class io.sentry.** { *; }
--dontwarn io.sentry.**
 
 # ---- Coil ----
 -keep class coil3.** { *; }
 -keep class com.seuapp.cycletrack.ui.** { *; }
-
-# ---- Accompanist ----
--keep class com.google.accompanist.** { *; }
 
 # ---- iText (PDF) ----
 -keep class com.itextpdf.** { *; }
@@ -164,3 +148,4 @@
 -dontwarn kotlinx.coroutines.debug.**
 -dontwarn androidx.compose.runtime.**
 -dontwarn org.jetbrains.annotations.**
+-dontwarn org.slf4j.**

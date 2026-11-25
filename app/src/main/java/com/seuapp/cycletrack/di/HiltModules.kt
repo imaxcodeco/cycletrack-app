@@ -70,12 +70,6 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideSubscriptionRepository(subscriptionDao: SubscriptionDao): SubscriptionRepository {
-        return SubscriptionRepositoryImpl(subscriptionDao)
-    }
-
-    @Provides
-    @Singleton
     fun provideContentRepository(contentDao: ContentDao): ContentRepository {
         return ContentRepositoryImpl(contentDao)
     }

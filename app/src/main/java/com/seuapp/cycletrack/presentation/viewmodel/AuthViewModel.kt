@@ -37,6 +37,9 @@ class AuthViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private val _isCheckingSession = MutableStateFlow(true)
+    val isCheckingSession: StateFlow<Boolean> = _isCheckingSession
+
     init {
         checkCurrentUser()
     }
@@ -89,23 +92,21 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun signOut() {
-        viewModelScope.launch {
-            try {
-                _isLoading.value = true
-                val result = signOutUseCase()
+    suspend fun signOut() {
+        try {
+            _isLoading.value = true
+            val result = signOutUseCase()
 
-                result.onSuccess {
-                    _authState.value = AuthState.Unauthenticated
-                    _signUpError.value = null
-                    _signInError.value = null
-                    Timber.d("Sign-out realizado com sucesso")
-                }.onFailure { e ->
-                    Timber.e(e, "Erro no sign-out")
-                }
-            } finally {
-                _isLoading.value = false
+            result.onSuccess {
+                _authState.value = AuthState.Unauthenticated
+                _signUpError.value = null
+                _signInError.value = null
+                Timber.d("Sign-out realizado com sucesso")
+            }.onFailure { e ->
+                Timber.e(e, "Erro no sign-out")
             }
+        } finally {
+            _isLoading.value = false
         }
     }
 
@@ -122,6 +123,8 @@ class AuthViewModel @Inject constructor(
             } catch (e: Exception) {
                 Timber.e(e, "Erro ao verificar usuário atual")
                 _authState.value = AuthState.Unauthenticated
+            } finally {
+                _isCheckingSession.value = false
             }
         }
     }
