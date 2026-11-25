@@ -31,6 +31,9 @@ jobs:
           mkdir -p keystore
           echo "$KEYSTORE_DATA" | base64 -d > keystore/release.keystore
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Build Release AAB
         env:
           KEYSTORE_PATH: keystore/release.keystore
