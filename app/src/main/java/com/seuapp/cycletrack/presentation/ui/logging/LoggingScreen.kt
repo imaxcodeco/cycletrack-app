@@ -21,10 +21,18 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.WaterDrop
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -125,6 +133,8 @@ private val categories = listOf(
 fun LoggingScreen(viewModel: SymptomViewModel = hiltViewModel()) {
     val colors = CycleTrackColors()
     val symptoms by viewModel.symptoms.collectAsStateWithLifecycle()
+    val periodLogMessage by viewModel.periodLogMessage.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
 
     var selectedDate by remember { mutableStateOf(LocalDate.now()) }
     var weightText by remember { mutableStateOf("") }
@@ -139,12 +149,24 @@ fun LoggingScreen(viewModel: SymptomViewModel = hiltViewModel()) {
         temperatureText = symptoms.find { it.category == "Temperatura" }?.value?.let(::formatMeasurement) ?: ""
     }
 
+    LaunchedEffect(periodLogMessage) {
+        periodLogMessage?.let {
+            snackbarHostState.showSnackbar(it)
+            viewModel.consumePeriodLogMessage()
+        }
+    }
+
     fun isSelected(category: String, option: String): Boolean =
         symptoms.any { it.category == category && it.name == option }
 
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        containerColor = MaterialTheme.colorScheme.background
+    ) { innerPadding ->
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
+            .padding(innerPadding)
             .background(MaterialTheme.colorScheme.background),
         contentPadding = PaddingValues(
             horizontal = CycleTrackDimens.spacingMd,
@@ -202,6 +224,24 @@ fun LoggingScreen(viewModel: SymptomViewModel = hiltViewModel()) {
                         }
                     }
                 }
+            }
+        }
+
+        item {
+            Button(
+                onClick = { viewModel.logPeriodStart(selectedDate) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(52.dp),
+                shape = RoundedCornerShape(CycleTrackDimens.radiusMd),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colors.phaseMenstrual,
+                    contentColor = Color.White
+                )
+            ) {
+                Icon(Icons.Filled.WaterDrop, contentDescription = null)
+                Spacer(Modifier.width(CycleTrackDimens.spacingSm))
+                Text("Minha menstruação começou neste dia")
             }
         }
 
@@ -265,6 +305,7 @@ fun LoggingScreen(viewModel: SymptomViewModel = hiltViewModel()) {
                 )
             }
         }
+    }
     }
 }
 
