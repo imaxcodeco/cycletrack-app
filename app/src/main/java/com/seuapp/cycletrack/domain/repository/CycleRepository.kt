@@ -11,6 +11,9 @@ interface CycleRepository {
 
     suspend fun getLatestCycle(userId: String): Cycle?
 
+    /** Últimos [limit] ciclos (mais recente primeiro), para calcular médias de previsão. */
+    suspend fun getRecentCycles(userId: String, limit: Int): List<Cycle>
+
     suspend fun getCyclesInRange(userId: String, startDate: Long, endDate: Long): List<Cycle>
 
     suspend fun getPredictedCycles(userId: String): List<Cycle>

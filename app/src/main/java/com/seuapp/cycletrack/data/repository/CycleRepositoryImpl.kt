@@ -31,6 +31,10 @@ class CycleRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getRecentCycles(userId: String, limit: Int): List<Cycle> {
+        return cycleDao.getRecentCycles(userId, limit).map { it.toDomain() }
+    }
+
     override suspend fun getCyclesInRange(userId: String, startDate: Long, endDate: Long): List<Cycle> {
         val realmCycles = cycleDao.getCyclesInRange(userId, startDate, endDate)
         return realmCycles.map { it.toDomain() }

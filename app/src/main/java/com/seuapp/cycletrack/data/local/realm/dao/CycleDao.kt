@@ -59,6 +59,23 @@ class CycleDao @Inject constructor() {
         return emptyList()
     }
 
+    /** Últimos [limit] ciclos (mais recente primeiro), usados para calcular médias de previsão. */
+    suspend fun getRecentCycles(userId: String, limit: Int): List<CycleRealm> = withContext(Dispatchers.IO) {
+        try {
+            val r = realm
+            r.refresh()
+            r.where(CycleRealm::class.java)
+                .equalTo("userId", userId)
+                .equalTo("deletedAt", 0L)
+                .sort("startDate", io.realm.Sort.DESCENDING)
+                .findAll()
+                .take(limit)
+                .let { r.copyFromRealm(it) }
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
     suspend fun getPredictedCycles(userId: String): List<CycleRealm> {
         return emptyList()
     }

@@ -46,6 +46,11 @@ class HomeViewModel @Inject constructor(
     private val _error = MutableStateFlow<String?>(null)
     val error = _error.asStateFlow()
 
+    companion object {
+        /** Quantos ciclos recentes entram na média usada para prever o próximo período/ovulação. */
+        private const val CYCLES_FOR_AVERAGE = 6
+    }
+
     init {
         loadCurrentCycle()
     }
@@ -57,15 +62,19 @@ class HomeViewModel @Inject constructor(
 
             try {
                 val userId = "user_123"
-                val latestCycle = try {
-                    cycleRepository.getLatestCycle(userId)
+                val recentCycles = try {
+                    cycleRepository.getRecentCycles(userId, CYCLES_FOR_AVERAGE)
                 } catch (e: Exception) {
-                    Timber.w(e, "Failed to load cycle, using dummy")
-                    null
+                    Timber.w(e, "Failed to load recent cycles")
+                    emptyList()
                 }
 
-                val cycle = latestCycle ?: createDummyCycle()
-                applyCycle(cycle)
+                if (recentCycles.isEmpty()) {
+                    // Sem dados reais: não inventamos um ciclo. A UI mostra o empty state.
+                    clearCycleState()
+                } else {
+                    applyCycle(recentCycles)
+                }
 
                 _cycleCount.value = try {
                     cycleRepository.getCycleCount(userId)
@@ -73,45 +82,24 @@ class HomeViewModel @Inject constructor(
                     0
                 }
 
-                Timber.d("Cycle loaded: day $dayOfCycle of ${cycle.cycleLength}")
+                Timber.d("Cycles loaded: ${recentCycles.size}")
             } catch (e: Exception) {
                 Timber.e(e, "Error in loadCurrentCycle")
                 _error.value = e.message
-                // Provide fallback dummy data
-                _currentCycle.value = createDummyCycle()
-                _dayOfCycle.value = 15
-                _cyclePhase.value = CyclePhase.OVULATION
-                _nextPeriod.value = LocalDate.now().plusDays(15)
-                _ovulationDate.value = LocalDate.now().plusDays(2)
-                _fertileWindow.value = FertileWindow(LocalDate.now().minusDays(2), LocalDate.now().plusDays(2))
+                clearCycleState()
             } finally {
                 _isLoading.value = false
             }
         }
     }
 
-    private fun createDummyCycle(): Cycle {
-        val startDate = LocalDate.now().minusDays(14)
-        val endDate = startDate.plusDays(4)
-        val cycleLength = 28
-        val lutealPhase = 14
-        val ovulationDate = startDate.plusDays((cycleLength - lutealPhase - 1).toLong())
-        val fertileStart = ovulationDate.minusDays(5)
-        val fertileEnd = ovulationDate.plusDays(1)
-
-        return Cycle(
-            id = "dummy_cycle_1",
-            userId = "user_123",
-            startDate = startDate,
-            endDate = endDate,
-            cycleLength = cycleLength,
-            periodLength = 5,
-            lutealPhaseLength = lutealPhase,
-            ovulationDate = ovulationDate,
-            fertileWindowStart = fertileStart,
-            fertileWindowEnd = fertileEnd,
-            notes = "Ciclo simulado para testes"
-        )
+    private fun clearCycleState() {
+        _currentCycle.value = null
+        _dayOfCycle.value = 1
+        _cyclePhase.value = CyclePhase.UNKNOWN
+        _nextPeriod.value = null
+        _ovulationDate.value = null
+        _fertileWindow.value = null
     }
 
     fun refreshCurrentCycle() {
@@ -123,8 +111,8 @@ class HomeViewModel @Inject constructor(
             try {
                 _isLoading.value = true
                 cycleRepository.upsertCycle(cycle)
-                applyCycle(cycle)
                 Timber.d("Cycle added: ${cycle.id}")
+                loadCurrentCycle()
             } catch (e: Exception) {
                 _error.value = e.message
                 Timber.e(e, "Error adding cycle")
@@ -149,26 +137,38 @@ class HomeViewModel @Inject constructor(
         addCycle(recalculated)
     }
 
-    private fun applyCycle(cycle: Cycle) {
-        _currentCycle.value = cycle
+    /**
+     * Usa a média dos últimos ciclos registrados (não só o mais recente) para prever o
+     * próximo período, ovulação e janela fértil. Isso evita que um único ciclo atípico
+     * distorça a previsão e faz a precisão melhorar conforme mais ciclos são registrados
+     * (Flo é criticado por previsões que "não atualizam" com novos dados).
+     */
+    private fun applyCycle(cycles: List<Cycle>) {
+        val latest = cycles.first()
+        val avgCycleLength = cycles.map { it.cycleLength }.average().toInt().coerceIn(15, 90)
+        val avgPeriodLength = cycles.map { it.periodLength }.average().toInt().coerceIn(1, 15)
+        val lutealPhase = latest.lutealPhaseLength.takeIf { it in 7..21 } ?: 14
 
-        val startDate = cycle.startDate
+        val startDate = latest.startDate
         val today = LocalDate.now()
         val dayOfCycle = ((today.toEpochDay() - startDate.toEpochDay()).toInt() + 1).coerceAtLeast(1)
 
+        val ovulationDay = (avgCycleLength - lutealPhase).coerceAtLeast(1)
+        val ovulationDate = startDate.plusDays(ovulationDay.toLong())
+
+        _currentCycle.value = latest.copy(cycleLength = avgCycleLength, periodLength = avgPeriodLength)
         _dayOfCycle.value = dayOfCycle
         _cyclePhase.value = when {
-            dayOfCycle <= cycle.periodLength -> CyclePhase.MENSTRUAL
-            dayOfCycle <= 11 -> CyclePhase.FOLLICULAR
-            dayOfCycle <= 14 -> CyclePhase.OVULATION
+            dayOfCycle <= avgPeriodLength -> CyclePhase.MENSTRUAL
+            dayOfCycle <= ovulationDay - 2 -> CyclePhase.FOLLICULAR
+            dayOfCycle <= ovulationDay + 1 -> CyclePhase.OVULATION
             else -> CyclePhase.LUTEAL
         }
-
-        _nextPeriod.value = startDate.plusDays(cycle.cycleLength.toLong())
-        _ovulationDate.value = cycle.ovulationDate ?: startDate.plusDays(14)
+        _nextPeriod.value = startDate.plusDays(avgCycleLength.toLong())
+        _ovulationDate.value = ovulationDate
         _fertileWindow.value = FertileWindow(
-            cycle.fertileWindowStart ?: startDate.plusDays(9),
-            cycle.fertileWindowEnd ?: startDate.plusDays(14)
+            ovulationDate.minusDays(5),
+            ovulationDate.plusDays(1)
         )
     }
 }
