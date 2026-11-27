@@ -30,7 +30,7 @@ class FirebaseAuthRepository @Inject constructor(
             firebaseUser.updateProfile(profileUpdate).await()
 
             val user = firebaseUser.toUser()
-            Timber.d("Sign-up realizado: ${user.email}")
+            Timber.d("Sign-up realizado")
             Result.success(user)
         } catch (e: Exception) {
             Timber.e(e, "Erro no sign-up")
@@ -46,7 +46,7 @@ class FirebaseAuthRepository @Inject constructor(
                 ?: throw Exception("Falha ao fazer login")
 
             val user = firebaseUser.toUser()
-            Timber.d("Sign-in realizado: ${user.email}")
+            Timber.d("Sign-in realizado")
             Result.success(user)
         } catch (e: Exception) {
             Timber.e(e, "Erro no sign-in")
@@ -62,7 +62,7 @@ class FirebaseAuthRepository @Inject constructor(
                 ?: throw Exception("Falha ao fazer login com Google")
 
             val user = firebaseUser.toUser()
-            Timber.d("Google sign-in realizado: ${user.email}")
+            Timber.d("Google sign-in realizado")
             Result.success(user)
         } catch (e: Exception) {
             Timber.e(e, "Erro no Google sign-in")
@@ -84,10 +84,7 @@ class FirebaseAuthRepository @Inject constructor(
     override suspend fun getCurrentUser(): User? {
         return try {
             val firebaseUser = firebaseAuth.currentUser
-            firebaseUser?.let {
-                Timber.d("Usuário atual: ${it.email}")
-                it.toUser()
-            }
+            firebaseUser?.toUser()
         } catch (e: Exception) {
             Timber.e(e, "Erro ao buscar usuário atual")
             null

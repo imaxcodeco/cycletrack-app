@@ -4,15 +4,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -25,10 +28,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.seuapp.cycletrack.presentation.ui.theme.CycleTrackDimens
+
+private const val PRIVACY_POLICY_URL = "https://imaxcodeco.github.io/cycletrack-app/"
+private const val TERMS_URL = "https://imaxcodeco.github.io/cycletrack-app/terms.html"
 
 @Composable
 fun SignUpScreen(
@@ -42,6 +53,8 @@ fun SignUpScreen(
     var name by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var localError by remember { mutableStateOf<String?>(null) }
+    var consentChecked by remember { mutableStateOf(false) }
+    val uriHandler = LocalUriHandler.current
 
     Column(
         modifier = Modifier
@@ -116,7 +129,45 @@ fun SignUpScreen(
             )
         }
 
-        Spacer(Modifier.height(CycleTrackDimens.spacingLg))
+        Spacer(Modifier.height(CycleTrackDimens.spacingMd))
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Checkbox(
+                checked = consentChecked,
+                onCheckedChange = { consentChecked = it },
+                enabled = !isLoading,
+            )
+            Spacer(Modifier.width(CycleTrackDimens.spacingXs))
+            val consentText = buildAnnotatedString {
+                append("Li e aceito a ")
+                withStyle(SpanStyle(textDecoration = TextDecoration.Underline, color = MaterialTheme.colorScheme.primary)) {
+                    append("Política de Privacidade")
+                }
+                append(" e os ")
+                withStyle(SpanStyle(textDecoration = TextDecoration.Underline, color = MaterialTheme.colorScheme.primary)) {
+                    append("Termos de Serviço")
+                }
+            }
+            Text(
+                text = consentText,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.weight(1f),
+            )
+        }
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            TextButton(onClick = { uriHandler.openUri(PRIVACY_POLICY_URL) }) {
+                Text("Ver Política", style = MaterialTheme.typography.labelSmall)
+            }
+            TextButton(onClick = { uriHandler.openUri(TERMS_URL) }) {
+                Text("Ver Termos", style = MaterialTheme.typography.labelSmall)
+            }
+        }
+
+        Spacer(Modifier.height(CycleTrackDimens.spacingMd))
 
         Box(
             modifier = Modifier.fillMaxWidth(),
@@ -130,6 +181,7 @@ fun SignUpScreen(
                         localError = when {
                             password.length < 6 -> "A senha precisa ter pelo menos 6 caracteres."
                             password != confirmPassword -> "As senhas não coincidem."
+                            !consentChecked -> "Você precisa aceitar a Política de Privacidade e os Termos de Serviço."
                             else -> null
                         }
                         if (localError == null) {
@@ -139,7 +191,7 @@ fun SignUpScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp),
-                    enabled = email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty(),
+                    enabled = email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty() && consentChecked,
                 ) {
                     Text("Criar Conta")
                 }

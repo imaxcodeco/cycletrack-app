@@ -270,6 +270,14 @@ fun HomeScreen(
             }
         }
 
+        item {
+            Text(
+                text = "Estimativas baseadas no seu histórico. Não é método contraceptivo nem substitui orientação médica.",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+
         if (cycleCount < 2) {
             item {
                 EmptyCycleDataCard(
