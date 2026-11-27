@@ -2,6 +2,7 @@ package com.seuapp.cycletrack.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.seuapp.cycletrack.data.session.UserSession
 import com.seuapp.cycletrack.domain.model.PartnerConnection
 import com.seuapp.cycletrack.domain.repository.PartnerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,11 +14,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-private const val DEFAULT_USER_ID = "user_123"
-
 @HiltViewModel
 class PartnerViewModel @Inject constructor(
-    private val partnerRepository: PartnerRepository
+    private val partnerRepository: PartnerRepository,
+    private val userSession: UserSession
 ) : ViewModel() {
     private val _partner = MutableStateFlow<PartnerConnection?>(null)
     val partner = _partner.asStateFlow()
@@ -25,7 +25,7 @@ class PartnerViewModel @Inject constructor(
     val isLoading = _isLoading.asStateFlow()
 
     init {
-        loadPartner(DEFAULT_USER_ID)
+        loadPartner(userSession.currentUserId())
     }
 
     fun loadPartner(userId: String) {
@@ -51,7 +51,7 @@ class PartnerViewModel @Inject constructor(
                 val code = (100000..999999).random(Random).toString()
                 val connection = PartnerConnection(
                     id = UUID.randomUUID().toString(),
-                    userId = DEFAULT_USER_ID,
+                    userId = userSession.currentUserId(),
                     inviteCode = code,
                     status = PartnerConnection.STATUS_PENDING
                 )

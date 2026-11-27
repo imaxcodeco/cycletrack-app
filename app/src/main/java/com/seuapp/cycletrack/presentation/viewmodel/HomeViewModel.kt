@@ -2,6 +2,7 @@ package com.seuapp.cycletrack.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.seuapp.cycletrack.data.session.UserSession
 import com.seuapp.cycletrack.domain.model.Cycle
 import com.seuapp.cycletrack.domain.repository.CycleRepository
 import com.seuapp.cycletrack.domain.usecase.CyclePhase
@@ -16,7 +17,8 @@ import timber.log.Timber
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val cycleRepository: CycleRepository
+    private val cycleRepository: CycleRepository,
+    private val userSession: UserSession
 ) : ViewModel() {
 
     private val _currentCycle = MutableStateFlow<Cycle?>(null)
@@ -61,7 +63,7 @@ class HomeViewModel @Inject constructor(
             _error.value = null
 
             try {
-                val userId = "user_123"
+                val userId = userSession.currentUserId()
                 val recentCycles = try {
                     cycleRepository.getRecentCycles(userId, CYCLES_FOR_AVERAGE)
                 } catch (e: Exception) {

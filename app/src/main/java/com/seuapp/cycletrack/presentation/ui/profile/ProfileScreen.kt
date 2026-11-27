@@ -61,8 +61,6 @@ import com.seuapp.cycletrack.presentation.ui.theme.CycleTrackColors
 import com.seuapp.cycletrack.presentation.ui.theme.CycleTrackDimens
 import com.seuapp.cycletrack.R
 
-private const val DEFAULT_USER_ID = "user_123"
-
 private val goalStep = OnboardingStep.MultiChoiceGrid(
     title = "O que você quer?",
     subtitle = "Escolha a opção que mais combina com você",
@@ -96,7 +94,7 @@ fun ProfileScreen(
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
-        viewModel.loadProfile(DEFAULT_USER_ID)
+        viewModel.loadProfile()
     }
 
     val displayName = profile?.displayName?.ifBlank { "Ana Martins" } ?: "Ana Martins"
@@ -247,7 +245,7 @@ fun ProfileScreen(
             MultiChoiceGridScreen(
                 step = goalStep,
                 onSelect = { option ->
-                    viewModel.updateGoal(DEFAULT_USER_ID, option.key)
+                    viewModel.updateGoal(option.key)
                     showGoalSheet = false
                 }
             )

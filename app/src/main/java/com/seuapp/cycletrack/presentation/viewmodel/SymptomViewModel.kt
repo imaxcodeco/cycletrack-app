@@ -2,6 +2,7 @@ package com.seuapp.cycletrack.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.seuapp.cycletrack.data.session.UserSession
 import com.seuapp.cycletrack.domain.model.Cycle
 import com.seuapp.cycletrack.domain.model.Symptom
 import com.seuapp.cycletrack.domain.repository.CycleRepository
@@ -15,12 +16,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-private const val DEFAULT_USER_ID = "user_123"
-
 @HiltViewModel
 class SymptomViewModel @Inject constructor(
     private val symptomRepository: SymptomRepository,
-    private val cycleRepository: CycleRepository
+    private val cycleRepository: CycleRepository,
+    private val userSession: UserSession
 ) : ViewModel() {
 
     private val _symptoms = MutableStateFlow<List<Symptom>>(emptyList())
@@ -45,7 +45,7 @@ class SymptomViewModel @Inject constructor(
             try {
                 _isLoading.value = true
                 _error.value = null
-                _symptoms.value = symptomRepository.getSymptomsForDate(DEFAULT_USER_ID, date.toEpochDay())
+                _symptoms.value = symptomRepository.getSymptomsForDate(userSession.currentUserId(), date.toEpochDay())
             } catch (e: Exception) {
                 _error.value = e.message
                 Timber.e(e, "Error loading symptoms")
@@ -63,7 +63,8 @@ class SymptomViewModel @Inject constructor(
     fun toggleSymptom(date: LocalDate, category: String, name: String) {
         viewModelScope.launch {
             try {
-                val id = "${DEFAULT_USER_ID}_${date.toEpochDay()}_${category}_$name"
+                val userId = userSession.currentUserId()
+                val id = "${userId}_${date.toEpochDay()}_${category}_$name"
                 val existing = _symptoms.value.find { it.id == id }
                 if (existing != null) {
                     symptomRepository.deleteSymptom(id)
@@ -71,7 +72,7 @@ class SymptomViewModel @Inject constructor(
                 } else {
                     val symptom = Symptom(
                         id = id,
-                        userId = DEFAULT_USER_ID,
+                        userId = userId,
                         date = date,
                         name = name,
                         category = category
@@ -95,7 +96,8 @@ class SymptomViewModel @Inject constructor(
     fun saveMeasurement(date: LocalDate, category: String, value: Double?) {
         viewModelScope.launch {
             try {
-                val id = "${DEFAULT_USER_ID}_${date.toEpochDay()}_measurement_$category"
+                val userId = userSession.currentUserId()
+                val id = "${userId}_${date.toEpochDay()}_measurement_$category"
                 if (value == null) {
                     symptomRepository.deleteSymptom(id)
                     _symptoms.value = _symptoms.value.filterNot { it.id == id }
@@ -103,7 +105,7 @@ class SymptomViewModel @Inject constructor(
                 }
                 val symptom = Symptom(
                     id = id,
-                    userId = DEFAULT_USER_ID,
+                    userId = userId,
                     date = date,
                     name = category,
                     category = category,
@@ -148,7 +150,8 @@ class SymptomViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                val recent = cycleRepository.getRecentCycles(DEFAULT_USER_ID, CYCLES_FOR_AVERAGE)
+                val userId = userSession.currentUserId()
+                val recent = cycleRepository.getRecentCycles(userId, CYCLES_FOR_AVERAGE)
                 val latest = recent.firstOrNull()
                 val avgPeriod = recent.map { it.periodLength }
                     .ifEmpty { listOf(DEFAULT_PERIOD_LENGTH) }
@@ -157,7 +160,7 @@ class SymptomViewModel @Inject constructor(
                 when {
                     latest == null -> {
                         cycleRepository.upsertCycle(
-                            Cycle.createManual(DEFAULT_USER_ID, date, avgPeriod)
+                            Cycle.createManual(userId, date, avgPeriod)
                         )
                         _periodLogMessage.value = "Menstruação registrada."
                     }
@@ -180,7 +183,7 @@ class SymptomViewModel @Inject constructor(
                                 .average().toInt().coerceIn(15, 90)
                             cycleRepository.upsertCycle(
                                 Cycle.createManual(
-                                    userId = DEFAULT_USER_ID,
+                                    userId = userId,
                                     startDate = date,
                                     periodLength = avgPeriod,
                                     previousCycleLength = estimatedLength
@@ -196,7 +199,7 @@ class SymptomViewModel @Inject constructor(
                             ChronoUnit.DAYS.between(date, latest.startDate).toInt().coerceIn(15, 90)
                         cycleRepository.upsertCycle(
                             Cycle.createManual(
-                                userId = DEFAULT_USER_ID,
+                                userId = userId,
                                 startDate = date,
                                 periodLength = avgPeriod,
                                 previousCycleLength = lengthToNext

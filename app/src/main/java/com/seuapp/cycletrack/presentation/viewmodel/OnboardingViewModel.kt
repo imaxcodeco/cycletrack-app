@@ -1,6 +1,7 @@
 package com.seuapp.cycletrack.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.seuapp.cycletrack.data.session.UserSession
 import com.seuapp.cycletrack.domain.model.Cycle
 import com.seuapp.cycletrack.domain.model.UserProfile
 import com.seuapp.cycletrack.domain.repository.CycleRepository
@@ -23,11 +24,13 @@ data class OnboardingAnswers(
 @HiltViewModel
 class OnboardingViewModel @Inject constructor(
     private val userProfileRepository: UserProfileRepository,
-    private val cycleRepository: CycleRepository
+    private val cycleRepository: CycleRepository,
+    private val userSession: UserSession
 ) : ViewModel() {
 
-    suspend fun finishOnboarding(userId: String, answers: OnboardingAnswers) {
+    suspend fun finishOnboarding(answers: OnboardingAnswers) {
         try {
+            val userId = userSession.currentUserId()
             val dateOfBirth = answers.birthYear?.let { LocalDate.of(it, 1, 1) }
 
             val profile = UserProfile(

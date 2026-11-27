@@ -2,6 +2,7 @@ package com.seuapp.cycletrack.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.seuapp.cycletrack.data.session.UserSession
 import com.seuapp.cycletrack.domain.model.UserProfile
 import com.seuapp.cycletrack.domain.repository.UserProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserProfileViewModel @Inject constructor(
-    private val userProfileRepository: UserProfileRepository
+    private val userProfileRepository: UserProfileRepository,
+    private val userSession: UserSession
 ) : ViewModel() {
     private val _profile = MutableStateFlow<UserProfile?>(null)
     val profile = _profile.asStateFlow()
@@ -21,12 +23,11 @@ class UserProfileViewModel @Inject constructor(
     val isLoading = _isLoading.asStateFlow()
     private val _error = MutableStateFlow<String?>(null)
     val error = _error.asStateFlow()
-    fun loadProfile(userId: String) {
+    fun loadProfile() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                val profile = userProfileRepository.getProfile(userId)
-                _profile.value = profile
+                _profile.value = userProfileRepository.getProfile(userSession.currentUserId())
             } catch (e: Exception) {
                 _error.value = e.message
                 Timber.e(e, "Error loading profile")
@@ -36,9 +37,10 @@ class UserProfileViewModel @Inject constructor(
         }
     }
 
-    fun updateGoal(userId: String, goal: String) {
+    fun updateGoal(goal: String) {
         viewModelScope.launch {
             try {
+                val userId = userSession.currentUserId()
                 val current = _profile.value ?: userProfileRepository.getProfile(userId)
                 val updated = (current ?: UserProfile(id = userId, email = "")).copy(goal = goal)
                 userProfileRepository.upsertProfile(updated)

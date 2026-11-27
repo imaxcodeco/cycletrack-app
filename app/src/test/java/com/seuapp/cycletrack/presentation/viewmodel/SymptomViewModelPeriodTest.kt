@@ -1,10 +1,12 @@
 package com.seuapp.cycletrack.presentation.viewmodel
 
+import com.seuapp.cycletrack.data.session.UserSession
 import com.seuapp.cycletrack.domain.model.Cycle
 import com.seuapp.cycletrack.domain.repository.CycleRepository
 import com.seuapp.cycletrack.domain.repository.SymptomRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +34,7 @@ class SymptomViewModelPeriodTest {
     private val dispatcher = StandardTestDispatcher()
     private val symptomRepository = mockk<SymptomRepository>(relaxed = true)
     private val cycleRepository = mockk<CycleRepository>(relaxed = true)
+    private val userSession = mockk<UserSession>()
     private lateinit var viewModel: SymptomViewModel
 
     private val userId = "user_123"
@@ -40,7 +43,8 @@ class SymptomViewModelPeriodTest {
     @Before
     fun setup() {
         Dispatchers.setMain(dispatcher)
-        viewModel = SymptomViewModel(symptomRepository, cycleRepository)
+        every { userSession.currentUserId() } returns userId
+        viewModel = SymptomViewModel(symptomRepository, cycleRepository, userSession)
     }
 
     @After

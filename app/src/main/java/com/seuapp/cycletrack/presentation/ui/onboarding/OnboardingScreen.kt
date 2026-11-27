@@ -55,7 +55,7 @@ fun OnboardingScreen(
             step++
         } else {
             coroutineScope.launch {
-                viewModel.finishOnboarding("user_123", answers)
+                viewModel.finishOnboarding(answers)
                 onFinish()
             }
         }
