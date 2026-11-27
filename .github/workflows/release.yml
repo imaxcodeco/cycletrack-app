@@ -42,15 +42,9 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew bundleRelease --no-daemon
 
-      - name: Upload to Play Console (optional - manual step)
-        run: |
-          echo "AAB built successfully at: app/release/outputs/bundle/release/app-release.aab"
-          echo "Next: upload to Play Console manually or via fastlane"
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload AAB as workflow artifact
+        uses: actions/upload-artifact@v4
         with:
-          files: app/release/outputs/bundle/release/app-release.aab
-          draft: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: app-release-aab
+          path: app/build/outputs/bundle/release/app-release.aab
+          retention-days: 90
