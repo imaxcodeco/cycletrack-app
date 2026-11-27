@@ -37,9 +37,15 @@ data class Cycle(
             val endDate = startDate.plusDays((periodLength - 1).toLong())
             val cycleLength = previousCycleLength ?: 28
             val lutealPhase = 14
-            val ovulationDate = startDate.plusDays((cycleLength - lutealPhase - 1).toLong())
+            // Dia do ciclo em que ocorre a ovulação (convenção clínica, dia 1 = início da
+            // menstruação): cycleLength - lutealPhase. Ex.: ciclo de 28 dias, fase lútea de
+            // 14 dias -> ovulação no dia 14. startDate já É o dia 1, por isso -1 no plusDays.
+            val ovulationCycleDay = cycleLength - lutealPhase
+            val ovulationDate = startDate.plusDays((ovulationCycleDay - 1).toLong())
+            // Janela fértil = 6 dias terminando no dia da ovulação (ASRM, "Optimizing natural
+            // fertility: a committee opinion"): 5 dias antes + o próprio dia da ovulação.
             val fertileStart = ovulationDate.minusDays(5L)
-            val fertileEnd = ovulationDate.plusDays(1L)
+            val fertileEnd = ovulationDate
 
             return Cycle(
                 id = UUID.randomUUID().toString(),

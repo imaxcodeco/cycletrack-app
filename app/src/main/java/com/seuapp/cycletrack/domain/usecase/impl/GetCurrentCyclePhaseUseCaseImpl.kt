@@ -15,10 +15,13 @@ class GetCurrentCyclePhaseUseCaseImpl @Inject constructor(
         val today = LocalDate.now()
         val dayOfCycle = ChronoUnit.DAYS.between(cycle.startDate, today).toInt() + 1
 
+        // Fase lútea é praticamente constante (~14 dias) independente do tamanho do ciclo;
+        // quem varia é a fase folicular. Por isso ovulação = cycleLength - lutealPhase, não /2.
+        val ovulationCycleDay = cycle.cycleLength - cycle.lutealPhaseLength
         return when {
             dayOfCycle <= cycle.periodLength -> CyclePhase.MENSTRUAL
-            dayOfCycle <= cycle.cycleLength / 2 -> CyclePhase.FOLLICULAR
-            dayOfCycle <= cycle.cycleLength / 2 + 2 -> CyclePhase.OVULATION
+            dayOfCycle < ovulationCycleDay - 1 -> CyclePhase.FOLLICULAR
+            dayOfCycle <= ovulationCycleDay -> CyclePhase.OVULATION
             else -> CyclePhase.LUTEAL
         }
     }

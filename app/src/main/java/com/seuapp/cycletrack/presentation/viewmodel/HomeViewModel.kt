@@ -153,22 +153,26 @@ class HomeViewModel @Inject constructor(
         val today = LocalDate.now()
         val dayOfCycle = ((today.toEpochDay() - startDate.toEpochDay()).toInt() + 1).coerceAtLeast(1)
 
-        val ovulationDay = (avgCycleLength - lutealPhase).coerceAtLeast(1)
-        val ovulationDate = startDate.plusDays(ovulationDay.toLong())
+        // Dia do ciclo em que ocorre a ovulação (dia 1 = início da menstruação), padrão
+        // clínico ACOG/ASRM: cycleLength - lutealPhase. startDate já É o dia 1, daí o -1.
+        val ovulationCycleDay = (avgCycleLength - lutealPhase).coerceAtLeast(1)
+        val ovulationDate = startDate.plusDays((ovulationCycleDay - 1).toLong())
 
         _currentCycle.value = latest.copy(cycleLength = avgCycleLength, periodLength = avgPeriodLength)
         _dayOfCycle.value = dayOfCycle
         _cyclePhase.value = when {
             dayOfCycle <= avgPeriodLength -> CyclePhase.MENSTRUAL
-            dayOfCycle <= ovulationDay - 2 -> CyclePhase.FOLLICULAR
-            dayOfCycle <= ovulationDay + 1 -> CyclePhase.OVULATION
+            dayOfCycle < ovulationCycleDay - 1 -> CyclePhase.FOLLICULAR
+            dayOfCycle <= ovulationCycleDay -> CyclePhase.OVULATION
             else -> CyclePhase.LUTEAL
         }
         _nextPeriod.value = startDate.plusDays(avgCycleLength.toLong())
         _ovulationDate.value = ovulationDate
+        // Janela fértil = 6 dias terminando no dia da ovulação (ASRM, "Optimizing natural
+        // fertility: a committee opinion"): 5 dias antes + o próprio dia da ovulação.
         _fertileWindow.value = FertileWindow(
             ovulationDate.minusDays(5),
-            ovulationDate.plusDays(1)
+            ovulationDate
         )
     }
 }

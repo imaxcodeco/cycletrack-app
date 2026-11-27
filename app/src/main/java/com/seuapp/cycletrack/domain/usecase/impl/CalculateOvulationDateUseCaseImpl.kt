@@ -10,6 +10,9 @@ class CalculateOvulationDateUseCaseImpl @Inject constructor(
 ) : CalculateOvulationDateUseCase {
     override suspend fun invoke(userId: String): LocalDate? {
         val cycle = cycleRepository.getLatestCycle(userId) ?: return null
-        return cycle.startDate.plusDays((cycle.cycleLength / 2).toLong())
+        // Fase lútea é praticamente constante (~14 dias) independente do tamanho do ciclo;
+        // quem varia é a fase folicular. Por isso ovulação = cycleLength - lutealPhase, não /2.
+        val ovulationCycleDay = cycle.cycleLength - cycle.lutealPhaseLength
+        return cycle.startDate.plusDays((ovulationCycleDay - 1).toLong())
     }
 }

@@ -10,10 +10,11 @@ class CalculateFertileWindowUseCaseImpl @Inject constructor(
 ) : CalculateFertileWindowUseCase {
     override suspend fun invoke(userId: String): FertileWindow? {
         val cycle = cycleRepository.getLatestCycle(userId) ?: return null
-        val ovulationDay = cycle.cycleLength / 2
-        val ovulationDate = cycle.startDate.plusDays(ovulationDay.toLong())
-        val start = ovulationDate.minusDays(4)
-        val end = ovulationDate.plusDays(1)
+        val ovulationCycleDay = cycle.cycleLength - cycle.lutealPhaseLength
+        val ovulationDate = cycle.startDate.plusDays((ovulationCycleDay - 1).toLong())
+        // Janela fértil = 6 dias terminando no dia da ovulação (ASRM).
+        val start = ovulationDate.minusDays(5)
+        val end = ovulationDate
         return FertileWindow(start, end)
     }
 }
