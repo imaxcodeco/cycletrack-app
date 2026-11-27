@@ -274,7 +274,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
     testImplementation("org.mockito:mockito-core:5.11.0")
-    testImplementation("org.mockito:mockito-kotlin:5.11.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version")
